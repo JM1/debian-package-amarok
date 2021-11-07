@@ -1,0 +1,16 @@
+amarok: link-to-shared-library-in-wrong-package usr/lib/x86_64-linux-gnu/libamarok-sqlcollection.so.1.0.0 usr/lib/x86_64-linux-gnu/libamarok-sqlcollection.so
+amarok: link-to-shared-library-in-wrong-package usr/lib/x86_64-linux-gnu/libamarok-transcoding.so.1.0.0 usr/lib/x86_64-linux-gnu/libamarok-transcoding.so
+amarok: link-to-shared-library-in-wrong-package usr/lib/x86_64-linux-gnu/libamarokcore.so.1.0.0 usr/lib/x86_64-linux-gnu/libamarokcore.so
+amarok: link-to-shared-library-in-wrong-package usr/lib/x86_64-linux-gnu/libamaroklib.so.1.0.0 usr/lib/x86_64-linux-gnu/libamaroklib.so
+amarok: link-to-shared-library-in-wrong-package usr/lib/x86_64-linux-gnu/libamarokshared.so.1.0.0 usr/lib/x86_64-linux-gnu/libamarokshared.so
+amarok: no-manual-page usr/bin/amarok
+amarok: no-manual-page usr/bin/amarok_afttagger
+amarok: no-manual-page usr/bin/amarokcollectionscanner
+amarok: no-manual-page usr/bin/amarokpkg
+amarok: package-name-doesnt-match-sonames libamarok-sqlcollection1 libamarok-transcoding1 libamarok-service-lastfm-config libamarokcore1 libamaroklib1 libamarokpud libamarokshared1 libampache-account-login libgpodder-service-config
+amarok: shared-library-lacks-version usr/lib/x86_64-linux-gnu/libamarok_service_lastfm_config.so libamarok_service_lastfm_config.so
+amarok: shared-library-lacks-version usr/lib/x86_64-linux-gnu/libamarokpud.so libamarokpud.so
+amarok: shared-library-lacks-version usr/lib/x86_64-linux-gnu/libampache_account_login.so libampache_account_login.so
+amarok: shared-library-lacks-version usr/lib/x86_64-linux-gnu/libgpodder_service_config.so libgpodder_service_config.so
+amarok: unknown-field amarok_2.9.999-0_amd64.deb Original-Maintainer
+amarok-dbgsym: unknown-field amarok-dbgsym_2.9.999-0_amd64.deb Original-Maintainer

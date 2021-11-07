@@ -1,0 +1,347 @@
+---
+# Copyright (c) 2020-2021 Jakob Meng, <jakobmeng@web.de>
+# vim:set fileformat=unix tabstop=2 shiftwidth=2 expandtab:
+# kate: end-of-line unix; space-indent on; indent-width 2; remove-trailing-spaces modified;
+#
+# Build and publish packages for bullseye and sid
+# Ref.: https://salsa.debian.org/salsa-ci-team/pipeline/raw/master/pipeline-jobs.yml
+
+# A gpg key for signing repositories has to be defined as variable SALSA_CI_APTLY_GPG_KEY under Settings > CI/CD >
+# Variables with type "Variable". Optionally, its passphrase can be added as variable SALSA_CI_APTLY_GPG_PASSPHRASE
+# under Settings > CI/CD > Variables with type "Variable".
+#
+# A new gpg key can be generated and exported with
+# $ export SALSA_CI_APTLY_GPG_PASSPHRASE=secret
+# $ rngd -r /dev/urandom
+# $ cat << EOF | gpg --batch --gen-key
+#   Key-Type: RSA
+#   Key-Length: 4096
+#   Name-Real: ${DEBFULLNAME}
+#   Name-Email: ${DEBEMAIL}
+#   Expire-Date: 0
+#   Passphrase: ${SALSA_CI_APTLY_GPG_PASSPHRASE}
+#   %%commit
+#   EOF
+# $ gpg --output private.pgp --armor --export-secret-key
+
+# A private SSH RSA key has to be defined as variable SSH_PRIVATE_KEY_PATH under Settings > CI/CD > Variables with type
+# "File". Its public key part has to be stored as a deploy key with write permissions under Settings > Repository >
+# Deploy Keys.
+# Ref.: https://nicolaw.uk/GitLabCiPushingWrites
+
+include:
+  - 'https://salsa.debian.org/salsa-ci-team/pipeline/raw/master/salsa-ci.yml'
+
+variables:
+  RELEASE: 'sid'
+  SALSA_CI_DISABLE_APTLY: 0
+  SALSA_CI_DISABLE_AUTOPKGTEST: 1
+  SALSA_CI_DISABLE_BLHC: 1
+  SALSA_CI_DISABLE_LINTIAN: 1
+  SALSA_CI_DISABLE_PIUPARTS: 1
+  SALSA_CI_DISABLE_REPROTEST: 1
+  SALSA_CI_DISABLE_BUILD_PACKAGE_ALL: 0
+  SALSA_CI_DISABLE_BUILD_PACKAGE_ANY: 0
+  SALSA_CI_DISABLE_BUILD_PACKAGE_I386: 1
+  SALSA_CI_DISABLE_VERSION_BUMP: 1
+  GIT_SSH_COMMAND: "ssh -o StrictHostKeyChecking=no"
+  GIT_AUTHOR_NAME: Jakob Meng
+  GIT_AUTHOR_EMAIL: code@jakobmeng.de
+  GIT_COMMITTER_NAME: Gitlab CI Salsa Pipeline
+  GIT_COMMITTER_EMAIL: gitlab-ci@jakobmeng.de
+  GIT_DEPTH: 0
+  DEBFULLNAME: "Gitlab CI Salsa Pipeline"
+  DEBEMAIL: "gitlab-ci@jakobmeng.de"
+
+bump-amarok-version:
+  image: $SALSA_CI_IMAGES_GBP
+  rules:
+    - if: ($CI_PIPELINE_SOURCE != "schedule")
+      when: never
+    - if: $CI_COMMIT_BRANCH == "debian/sid" || $CI_COMMIT_BRANCH == "debian/bullseye"
+
+  script:
+    - |
+      set -e
+      set -x
+
+      # install required tools
+      apt-get update
+      apt-get install --no-install-recommends -y debhelper devscripts git openssh-client
+
+      # Prepare git for pushing back to repository
+      # Ref.: https://nicolaw.uk/GitLabCiPushingWrites
+
+      # store ssh key which is used for pushing
+      mkdir -pvm 0700 $HOME/.ssh
+      cat "${SSH_PRIVATE_KEY_PATH:?}" > $HOME/.ssh/id_rsa
+      rm "${SSH_PRIVATE_KEY_PATH:?}"
+      chmod 0400 $HOME/.ssh/id_rsa
+
+      # change url from https to git
+      origin_url="$(git remote get-url origin)"
+      [ -n "$origin_url" ] || exit 255
+      git remote set-url --push origin "$(echo "$origin_url" | sed -r 's#.+://([^/]+@)?([^/]+)/(.*)#git@\2:\3#')"
+
+      # unshallow repository
+      if $(git rev-parse --is-shallow-repository); then
+        git fetch --unshallow
+        git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
+      fi
+
+      git fetch origin
+
+      if [ "$CI_COMMIT_BRANCH" = "debian/sid" ]; then
+        # bump version
+        debian/maintain bump --debian-branch "$CI_COMMIT_BRANCH" --debug
+      else
+        # other branches follow debian/sid
+        git switch --quiet "$CI_COMMIT_BRANCH"
+        git merge --ff-only --quiet origin/debian/sid
+      fi
+
+      # push version
+      git push origin
+
+      # restore url scheme
+      git remote set-url --push origin "$origin_url"
+
+      # clean ssh key
+      rm -Rfv .ssh
+  stage: provisioning
+  variables:
+    GIT_STRATEGY: clone
+
+extract-source:
+  # .provisioning-extract-source cannot be used because it defines key except which is mutually exclusive with key rules
+  stage: provisioning
+  image: $SALSA_CI_IMAGES_GBP
+  extends:
+    - .artifacts-default-expire
+  variables:
+    DB_BUILD_PARAM: ${SALSA_CI_DPKG_BUILDPACKAGE_ARGS}
+    GIT_STRATEGY: clone
+  rules:
+    - if: $CI_COMMIT_TAG != null && $SALSA_CI_ENABLE_PIPELINE_ON_TAGS !~ /^(1|yes|true)$/
+      when: never
+    - if: $CI_PIPELINE_SOURCE != "push"
+      when: never
+    - if: $CI_COMMIT_BRANCH == "debian/sid" || $CI_COMMIT_BRANCH == "debian/bullseye"
+
+  script:
+    - |
+      # Ref.: https://salsa.debian.org/salsa-ci-team/pipeline/raw/master/salsa-ci.yml
+      set -e
+      set -x
+
+      # unshallow repository
+      if $(git rev-parse --is-shallow-repository); then
+        git fetch --unshallow
+        git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
+      fi
+      git fetch origin
+
+      mkdir -p "${WORKING_DIR}"
+
+      # Check if we can obtain the orig from the git branches
+      UPSTREAM_TAG=$(git merge-base $CI_COMMIT_SHA origin/master)
+      gbp export-orig --force-create --upstream-tag=$UPSTREAM_TAG --verbose
+      cp ../*orig.tar* ${WORKING_DIR}
+      SALSA_CI_GBP_BUILDPACKAGE_ARGS="--git-overlay ${SALSA_CI_GBP_BUILDPACKAGE_ARGS}"
+
+      # As of 2020-09-09, gbp doesn't have a simpler method to extract the
+      # debianized source package. Use --git-pbuilder=`/bin/true` for the moment:
+      # https://bugs.debian.org/969952
+      gbp buildpackage \
+          --git-ignore-branch \
+          --git-ignore-new \
+          --git-no-create-orig \
+          --git-export-dir=${WORKING_DIR} \
+          --no-check-builddeps \
+          --git-builder=/bin/true \
+          --git-no-pbuilder \
+          --git-no-hooks \
+          --git-no-purge \
+          ${SALSA_CI_GBP_BUILDPACKAGE_ARGS} |& filter-output
+
+      cd ${WORKING_DIR}
+      DEBIANIZED_SOURCE=$(find . -maxdepth 3 -wholename "*/debian/changelog" |\
+                          sed -e 's%/\w*/\w*$%%')
+      if [ ! "${DEBIANIZED_SOURCE}" ] ; then
+        echo "Error: No valid debianized source tree found."
+        exit 1
+      fi
+
+      mv ${DEBIANIZED_SOURCE} ${SOURCE_DIR}
+
+build:
+  extends:
+  # .build-package cannot be used because it defines key except which is mutually exclusive with key rules
+    - .build-definition
+    - .artifacts-default-expire
+  rules:
+    - if: $CI_COMMIT_TAG != null && $SALSA_CI_ENABLE_PIPELINE_ON_TAGS !~ /^(1|yes|true)$/
+      when: never # copied from .build-package:except
+    - if: ($CI_COMMIT_BRANCH != "debian/sid") && ($CI_COMMIT_BRANCH != "debian/bullseye")
+      when: never
+    - if: ($CI_PIPELINE_SOURCE != "push")
+      when: never
+    - if: ($CI_COMMIT_BRANCH == "debian/sid")
+      variables:
+        RELEASE: 'sid'
+    - if: ($CI_COMMIT_BRANCH == "debian/bullseye")
+      variables:
+        RELEASE: 'bullseye'
+  needs:
+    - job: extract-source
+      artifacts: true
+
+pages: # special name is required for Gitlab Pages
+  # .publish-aptly cannot be extended because it defines key except which is mutually exclusive with key rules
+  stage: publish
+  image: $SALSA_CI_IMAGES_APTLY
+  variables:
+    GIT_STRATEGY: none
+    PUBKEY_FILENAME: '${CI_PROJECT_PATH_SLUG}.asc'
+    REPO_PATH: 'public' # for Gitlab Pages it must be public
+  rules:
+    - if: $CI_COMMIT_TAG != null && $SALSA_CI_ENABLE_PIPELINE_ON_TAGS !~ /^(1|yes|true)$/
+      when: never # copied from .publish-aptly:except
+    - if: $SALSA_CI_DISABLE_APTLY =~ /^(1|yes|true)$/
+      when: never # copied from .publish-aptly:except
+    - if: ($CI_PIPELINE_SOURCE != "push")
+      when: never
+    - if: ($CI_COMMIT_BRANCH == "debian/sid")
+      variables:
+        RELEASE: 'sid'
+    - if: ($CI_COMMIT_BRANCH == "debian/bullseye")
+      variables:
+        RELEASE: 'bullseye'
+  script:
+    - |
+      set -e
+      set -x
+
+      # require a gpg key for aptly else aptly would generate a gpg key on each run
+      if [ -z "${SALSA_CI_APTLY_GPG_KEY}" ]; then
+        echo "for aptly a gpg key is required" >&2
+        exit 255
+      fi
+
+      # install required packages
+      apt-get update
+      apt install -y unzip curl gnupg
+
+      # prepare environment
+      export GPG_TTY="$(tty)"
+
+      # create repositories for all releases
+      RELEASES="sid bullseye"
+      for _RELEASE in $RELEASES; do
+        aptly repo create -distribution "${_RELEASE}" -component main "${CI_PROJECT_NAME}-${_RELEASE}"
+      done
+
+      # store list of repositories which have packages
+      FILLED_RELEASES=""
+
+      # add packages of current release to package repository
+      aptly repo add "${CI_PROJECT_NAME}-${RELEASE}" "${WORKING_DIR}"
+
+      # remove build artifacts so we can safely extract the artifacts from other builds
+      rm -rf "${WORKING_DIR:?}/"
+      FILLED_RELEASES="$FILLED_RELEASES $RELEASE"
+
+      # add packages of other releases to package repository
+      for _RELEASE in $RELEASES; do
+        if [ "$_RELEASE" = "$RELEASE" ]; then
+          # $RELEASE has been added before
+          continue
+        fi
+
+        if curl --location --silent --show-error --fail --output artifact.zip \
+            "${CI_PROJECT_URL}/-/jobs/artifacts/debian%2F${_RELEASE}/download?job=build"; then
+          unzip artifact.zip
+          aptly repo add "${CI_PROJECT_NAME}-${_RELEASE}" "${WORKING_DIR}"
+          rm artifact.zip
+          FILLED_RELEASES="$FILLED_RELEASES $_RELEASE"
+        fi
+      done
+
+      # show which packages we have
+      for _RELEASE in $FILLED_RELEASES; do
+        aptly repo show -with-packages "${CI_PROJECT_NAME}-${_RELEASE}"
+      done
+
+      # import gpg key which is used for signing the repository
+      # turn off tracing in subshell to prevent leaking the gpg key
+      (set +x && echo "${SALSA_CI_APTLY_GPG_KEY}" | gpg --import \
+        ${SALSA_CI_APTLY_GPG_PASSPHRASE:+ --batch --passphrase "${SALSA_CI_APTLY_GPG_PASSPHRASE}"})
+
+      # export public gpg key
+      gpg --export --armor > "${PUBKEY_FILENAME}"
+
+      for _RELEASE in $FILLED_RELEASES; do
+        # list all architectures
+        ARCHITECTURES="$(aptly repo show -with-packages "${CI_PROJECT_NAME}-${_RELEASE}" | \
+          awk 'BEGIN {FS="_"} /^Packages:/ {x=NR} (x && NR>x) {print $3}' | sort -u | tr '\n' ',')"
+        ARCHITECTURES="${ARCHITECTURES%,}"
+
+        # publish all repositories with packages
+        # turn off tracing in subshell to prevent leaking the gpg key
+        #
+        # Different prefixes have to be used because duplicate packages are created for different distributions
+        # Ref.: https://www.aptly.info/doc/feature/duplicate/
+        (set +x && aptly publish repo -batch \
+          ${ARCHITECTURES:+ -architectures="${ARCHITECTURES}"} \
+          ${SALSA_CI_APTLY_GPG_PASSPHRASE:+ -passphrase="${SALSA_CI_APTLY_GPG_PASSPHRASE}"} \
+          "${CI_PROJECT_NAME}-${_RELEASE}" "$_RELEASE")
+      done
+
+      # postprocess published repository
+      cp -a ~/.aptly/public/. "${CI_PROJECT_DIR}/${REPO_PATH}"
+      mv "${PUBKEY_FILENAME}" "${CI_PROJECT_DIR}/${REPO_PATH}/${PUBKEY_FILENAME}"
+
+      cat << EOF >> "${CI_PROJECT_DIR}/${REPO_PATH}/index.html"
+      <html>
+      <head><title>apt repositories for ${CI_PROJECT_PATH}</title></head>
+      <body>
+      <h2>Overview</h2>
+      <ul>
+      <li>Pipeline <a href="${CI_PIPELINE_URL}">${CI_PIPELINE_URL}</a></li>
+      <li>Job <a href="${CI_JOB_URL}">${CI_JOB_URL}</a></li>
+      <li>Repository Files <a href="${CI_JOB_URL}/artifacts/browse">${CI_JOB_URL}/artifacts/browse</a></li>
+      <li>Author ${DEBFULLNAME} &lt;${DEBEMAIL}&gt;</li>
+      </ul>
+      <br/>
+      EOF
+
+      for _RELEASE in $FILLED_RELEASES; do
+        export REPO_URL="${CI_PAGES_URL}/${_RELEASE}"
+        export REPO_PUBKEY_URL="${CI_PAGES_URL}/${PUBKEY_FILENAME}"
+        cat << __EOF >> "${CI_PROJECT_DIR}/${REPO_PATH}/index.html"
+      <h2>How to install ${CI_PROJECT_NAME} on Debian ${_RELEASE}:</h2>
+      <pre>
+      $ wget -qO- <a href="${REPO_PUBKEY_URL}">${REPO_PUBKEY_URL}</a> | sudo tee -a &bsol;
+          "/etc/apt/trusted.gpg.d/${PUBKEY_FILENAME}"
+      $ echo | sudo tee "/etc/apt/sources.list.d/${CI_PROJECT_PATH_SLUG}.list" &lt;&lt; EOF
+      deb <a href="${REPO_URL}">${REPO_URL}</a> ${_RELEASE} main
+      # deb-src <a href="${REPO_URL}">${REPO_URL}</a> ${_RELEASE} main
+      EOF
+      $ sudo apt update
+      $ sudo apt install ${CI_PROJECT_NAME}
+      </pre>
+      <a href="${CI_PROJECT_URL}/-/jobs/artifacts/debian%2F${_RELEASE}/browse?job=build">Browse build files for debian/${_RELEASE}</a>
+      <br/>
+      __EOF
+      done
+
+      cat << EOF >> "${CI_PROJECT_DIR}/${REPO_PATH}/index.html"
+      </body>
+      </html>
+      EOF
+  artifacts:
+    paths:
+      - ${CI_PROJECT_DIR}/${REPO_PATH}
+  needs:
+    - job: build
+      artifacts: true

@@ -1,0 +1,100 @@
+Source: amarok
+Section: sound
+Priority: optional
+Maintainer: Jakob Meng <jakobmeng@web.de>
+XSBC-Original-Maintainer: Joe Yasi <joe.yasi@gmail.com>, Kubuntu Developers <kubuntu-devel@lists.ubuntu.com>, Debian KDE Extras Team <pkg-kde-extras@lists.alioth.debian.org>
+Uploaders: Jakob Meng <jakobmeng@web.de>
+Build-Depends: cmake (>= 3.4.0),
+               debhelper (>= 13),
+               pkg-kde-tools (>= 0.5),
+               pkg-config,
+               extra-cmake-modules,
+               qtbase5-dev (>= 5.10),
+               libqt5svg5-dev,
+               qtquickcontrols2-5-dev,
+               qtwebengine5-dev,
+               qttools5-dev,
+               libkf5archive-dev,
+               libkf5attica-dev,
+               libkf5codecs-dev,
+               libkf5config-dev,
+               libkf5configwidgets-dev,
+               libkf5coreaddons-dev,
+               libkf5crash-dev,
+               libkf5dbusaddons-dev,
+               libkf5declarative-dev,
+               libkf5dnssd-dev,
+               libkf5doctools-dev,
+               libkf5globalaccel-dev,
+               libkf5guiaddons-dev,
+               libkf5i18n-dev,
+               libkf5iconthemes-dev,
+               libkf5kcmutils-dev,
+               libkf5kio-dev,
+               libkf5newstuff-dev,
+               libkf5notifications-dev,
+               libkf5package-dev,
+               libkf5solid-dev,
+               libkf5texteditor-dev,
+               libkf5threadweaver-dev,
+               libkf5widgetsaddons-dev,
+               libkf5windowsystem-dev,
+               kirigami2-dev,
+               libtag1-dev (>= 1.7),
+               libtag-extras-dev,
+               libphonon4qt5-dev,
+               liblastfm5-dev (>= 1.0.3~),
+               default-libmysqlclient-dev,
+               libavcodec-dev,
+               libavformat-dev,
+               libavutil-dev,
+               libofa0-dev,
+               libmygpo-qt-dev (>= 1.1.0),
+               libgpod-dev,
+               libkf5wallet-dev,
+               libgdk-pixbuf2.0-dev,
+               libmtp-dev (>= 1.0.0),
+               libcurl4-gnutls-dev,
+               libxml2-dev,
+               libssl-dev,
+               libloudmouth1-dev,
+               libglib2.0-dev,
+               python3-dev,
+               libfftw3-dev
+Build-Depends-Indep: virtual-mysql-server-core
+Standards-Version: 4.6.0
+Homepage: http://amarok.kde.org
+Vcs-Browser: https://code.launchpad.net/~kubuntu-packagers/kubuntu-packaging/+git/amarok
+Vcs-Git: git://git.launchpad.net/~kubuntu-packagers/kubuntu-packaging/+git/amarok
+
+Package: amarok
+Architecture: any
+Depends: ${misc:Depends}, ${perl:Depends}, ${shlibs:Depends}
+Recommends: media-player-info
+Suggests: moodbar
+Description: easy to use media player based on the KDE Platform
+ Amarok is a powerful music player with an intuitive interface. It makes
+ playing the music you love and discovering new music easier than ever before
+ and it looks good doing it! Amarok is based on the powerful Qt4 / KDE4
+ Platform and nicely integrates with KDE desktop.
+ .
+ Much work has been invested into integrating Amarok 2 with various Web
+ services:
+   - Ampache
+   - Jamendo Service
+   - Last.fm
+   - Librivox
+   - MP3tunes
+   - Magnatune
+   - OPML Podcast Directory
+ .
+ Amarok comes with a lot of features including but not limited to:
+   - Scripts - enhance your Amarok experience with community developed scripts.
+   - Dynamic Playlists - create playlists that automatically update.
+   - Context View - customize interface with the Plasma powered Context View.
+   - PopUp Dropper - simplify drag&drop actions with revolutionary menu system.
+   - Multiple Language Translations
+   - Collection Management - organizing your music collection has never been
+     easier with Amarok's powerful tagging, renaming, and sorting abilities.
+   - Database Importing - import collections from Amarok 1.4 or iTunes.
+   - Scriptable Services - integrate other web services into Amarok.

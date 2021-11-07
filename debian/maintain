@@ -1,0 +1,447 @@
+#!/bin/sh
+# vim:set fileformat=unix tabstop=8 shiftwidth=4 expandtab:
+# kate: end-of-line unix; space-indent on; indent-width 4; remove-trailing-spaces modified;
+#
+# Copyright (c) 2021 Jakob Meng, <jakobmeng@web.de>
+
+# NOTE: declare local variables first and initialize them later because return code of "local ..." is always 0
+
+set -e
+#set -x
+
+prg=$(basename "$0")
+
+version() {
+    cat << ____EOF
+$prg version 0.1
+Copyright (c) 2021 Jakob Meng, <jakobmeng@web.de>
+____EOF
+}
+
+help() {
+    cat << ____EOF
+Usage: $prg [OPTIONS] COMMAND [arg...]
+       $prg [ --help | -v | --version ]
+
+A script to bump and build the Amarok *.deb package
+
+Options:
+
+  -h, --help                      Print usage
+  -v, --version                   Print version information and quit
+
+Commands:
+
+    deps        Install build dependencies of Amarok's *.deb package
+    bump        Bump debian/* branch to latest commit from upstream/master branch
+    make        Build Amarok *.deb package
+    help        Print usage
+
+Run '$prg COMMAND --help' for more information on a command.
+
+____EOF
+}
+
+stderr() {
+    local _msg
+    while read -r _msg
+    do
+        echo "$_msg" 1>&2
+    done
+}
+
+error() {
+    stderr << ____EOF
+ERROR: $*
+____EOF
+}
+
+warn() {
+    stderr << ____EOF
+WARN: $*
+____EOF
+}
+
+deps() {
+    help() {
+        cat << ________EOF
+Usage:  $prg deps [OPTIONS]
+
+Install dependencies to build Amarok's *.deb package
+
+Options:
+      --debug                       Print commands issued by $prg
+      -h, --help                    Print usage
+________EOF
+    }
+
+    local _debug=""
+
+    while [ -n "$1" ]; do
+        case "$1" in
+            "--debug")
+                _debug="yes"
+                ;;
+            "-h"|"--help")
+                help
+                return 0
+                ;;
+            *)
+                error "unknown flag: $1"
+                return 255
+                ;;
+        esac
+        shift
+    done
+
+    [ "$_debug" = "yes" ] && set -x
+
+    if [ "$(id -u)" -ne "0" ]; then
+        error "run as root"
+        exit 255
+    fi
+
+    if ! git rev-parse 2>/dev/null; then
+        echo "not in a git repository" 1>&2
+        exit 255
+    fi
+
+    local _branch=""
+    _branch="$(git rev-parse --abbrev-ref HEAD)"
+    if case "$_branch" in debian/*) false;; *) true;; esac; then
+        error "not in debian/* branch"
+        exit 255
+    fi
+
+    # shellcheck disable=SC2091
+    if $(git rev-parse --is-shallow-repository); then
+        error "shallow git repository is not supported"
+        exit 255
+    fi
+
+    local _fail=no
+    local _tmpdir=""
+    # create temporary directory in /var/lib because /tmp is often mounted with noexec or nodev
+    _tmpdir="$(mktemp --tmpdir=/var/lib --directory "${prg}_$(date +%Y%m%d%H%M%S).XXXXXX")"
+
+    set +e # workaround for https://stackoverflow.com/a/19789651/6490710
+    (
+        set -e
+
+        apt-get update
+        apt-get install --no-install-recommends -y \
+            debhelper devscripts git pkg-kde-tools equivs eatmydata git-buildpackage
+        # devscripts is required for mk-build-deps
+        # equivs is required for mk-build-deps
+        # pkg-kde-tools is required for Amarok's source package
+
+        cd "$(git rev-parse --show-toplevel)"
+        _pkg="$(dpkg-parsechangelog | sed -n 's/^Source: \(.*\)/\1/p' | cut -f2 -d:)"
+
+        _version=$(dpkg-parsechangelog | sed -n 's/^Version: \(.*\)/\1/p' | cut -f2 -d: | cut -f1 -d-)
+        _master_tag=$(git merge-base HEAD master)
+        git archive --prefix="$_pkg/" "$_master_tag" | gzip > "$_tmpdir/${_pkg}_${_version}.orig.tar.gz"
+
+        _archived="$_tmpdir/$_pkg"
+        mkdir "$_archived"
+        git archive HEAD | tar -x -C "$_archived/"
+
+        chown -R nobody:nogroup "$_tmpdir/"
+        cd "$_archived/"
+        su nobody -s /bin/sh -c "dpkg-buildpackage --no-check-builddeps -us -S"
+        cd ../
+        mk-build-deps --install "${_pkg}_"*.dsc --tool "eatmydata apt-get --no-install-recommends -y"
+    )
+    local errc=$?
+    set -e
+    [ $errc -ne 0 ] && _fail=yes
+
+    # first remove temporary dir and ...
+    if [ -n "$_tmpdir" ] && [ -d "$_tmpdir" ]; then
+        rm -rf "${_tmpdir:?}/"
+    fi
+
+    # ... then return on error
+    if [ "$_fail" = "yes" ]; then
+        return 255
+    fi
+}
+
+bump() {
+    help() {
+        cat << ________EOF
+Usage:  $prg bump [OPTIONS]
+
+Bump debian/* branch to latest commit from upstream/master branch
+
+Options:
+      --debian-branch BRANCH   Branch which will be bumped, defaults to debian/sid
+      --force                  Do not stop if CMakeLists.txt has changed in upstream/master branch
+      --debug                  Print commands issued by $prg
+      -h, --help               Print usage
+________EOF
+    }
+
+    local _debian_branch="debian/sid"
+    local _debug=""
+    local _force=""
+
+    while [ -n "$1" ]; do
+        case "$1" in
+            "--debian-branch")
+                if [ -z "$2" ]; then
+                    error "flag is missing arg: --debian-branch"
+                    return 255
+                fi
+
+                _debian_branch="$2"
+                shift
+                ;;
+            "--debug")
+                _debug="yes"
+                ;;
+            "--force")
+                _force="yes"
+                ;;
+            "-h"|"--help")
+                help
+                return 0
+                ;;
+            *)
+                error "unknown flag: $1"
+                return 255
+                ;;
+        esac
+        shift
+    done
+
+    [ "$_debug" = "yes" ] && set -x
+
+    if [ "$(id -u)" -eq "0" ]; then
+        # might be run as root in Gitlab CI so ignore
+        :
+    fi
+
+    if ! git rev-parse 2>/dev/null; then
+        error "not in a git repository"
+        exit 255
+    fi
+
+    # shellcheck disable=SC2091
+    if $(git rev-parse --is-shallow-repository); then
+        error "shallow git repository is not supported"
+        exit 255
+    fi
+
+    cd "$(git rev-parse --show-toplevel)"
+
+    local _has_upstream=no
+    for _remote in $(git remote); do
+        case "$_remote" in
+            "upstream")
+                _has_upstream=yes
+                ;;
+            *)
+                ;;
+        esac
+    done
+
+    if [ "$_has_upstream" = "no" ]; then
+        git remote add upstream 'https://invent.kde.org/multimedia/amarok.git'
+    fi
+
+    local _has_master=no
+    for _branch in $(git branch); do
+        case "$_branch" in
+            "master")
+                _has_master=yes
+                ;;
+            *)
+                ;;
+        esac
+    done
+
+    git fetch --quiet origin master
+    git fetch --quiet upstream master
+    if [ "$_has_master" = "no" ]; then
+        git switch --quiet --create master --track origin/master
+    else
+        git switch --quiet master
+    fi
+    git merge --ff-only --quiet origin/master
+    git merge --ff-only --quiet upstream/master
+    if [ -e "debian" ]; then
+        error 'path debian found in upstream code'
+        exit 255
+    fi
+    git push --quiet origin master
+    _upstream_head="$(git rev-parse HEAD)"
+
+    git switch --quiet "$_debian_branch"
+    _master_tag=$(git merge-base "$_debian_branch" master)
+
+    if [ "$_master_tag" = "$_upstream_head" ]; then
+        echo "no updates"
+        exit
+    fi
+
+    if ! git diff --quiet "${_debian_branch}..master" -- CMakeLists.txt && [ "$_force" != "yes" ]; then
+        error 'CMakeLists.txt has changed, please check package dependencies!'
+        exit 255
+    fi
+
+    git merge --quiet master -m "Merged latest commits of Amarok's master branch"
+
+    # Ref.: http://www.fifi.org/doc/debian-policy/policy.html/ch-versions.html
+    _version=$(dpkg-parsechangelog | sed -n 's/^Version: \(.*\)/\1/p')
+    _epoch=$(echo "$_version" | cut -f1 -d:)
+    _upstream_version=$(echo "$_version" | cut -f2 -d: | cut -f1 -d-)
+    #_debian_revision=$(echo "$_version" | cut -f2 -d: | cut -f2 -d-)
+    _git_version=$(git rev-parse --short HEAD)
+    _date_version=$(date +%Y%m%d)
+    _new_version="${_epoch}:${_upstream_version}-${_date_version}+git${_git_version}"
+
+    debchange -v "$_new_version" "Latest upstream git."
+
+    git add debian/changelog
+    git commit --quiet -m "Bumped debian changelog to $_new_version"
+}
+
+make() {
+    help() {
+        cat << ________EOF
+Usage:  $prg make [OPTIONS]
+
+Build Amarok *.deb package
+
+Options:
+      --dpkg-buildpackage-args ARGS   Parameters to pass to dpkg-buildpackage
+      --debug                         Print commands issued by $prg
+      -h, --help                      Print usage
+________EOF
+    }
+
+    local _dpkg_buildpackage_args=""
+    local _debug=""
+
+    while [ -n "$1" ]; do
+        case "$1" in
+            "--dpkg-buildpackage-args")
+                if [ -z "$2" ]; then
+                    error "flag is missing arg: --dpkg-buildpackage-args"
+                    return 255
+                fi
+
+                _dpkg_buildpackage_args="$2"
+                shift
+                ;;
+            "--debug")
+                _debug="yes"
+                ;;
+            "-h"|"--help")
+                help
+                return 0
+                ;;
+            *)
+                error "unknown flag: $1"
+                return 255
+                ;;
+        esac
+        shift
+    done
+
+    [ "$_debug" = "yes" ] && set -x
+
+    if [ "$(id -u)" -eq "0" ]; then
+        error "do not run as root"
+        exit 255
+    fi
+
+    if ! git rev-parse 2>/dev/null; then
+        error "not in a git repository"
+        exit 255
+    fi
+
+    cd "$(git rev-parse --show-toplevel)"
+
+    if [ -e debian/output ]; then
+        error "output directory exists"
+        exit 255
+    fi
+
+    local _fail=no
+    local _tmpdir=""
+    # create temporary directory in $HOME/.cache because /tmp is often mounted with noexec or nodev
+    _tmpdir="$(mktemp "--tmpdir=$HOME/.cache" --directory "${prg}_$(date +%Y%m%d%H%M%S).XXXXXX")"
+
+    set +e # workaround for https://stackoverflow.com/a/19789651/6490710
+    (
+        set -e
+
+        _output="$(readlink -f debian/output)"
+
+        _pkg="$(dpkg-parsechangelog | sed -n 's/^Source: \(.*\)/\1/p' | cut -f2 -d:)"
+
+        _version=$(dpkg-parsechangelog | sed -n 's/^Version: \(.*\)/\1/p' | cut -f2 -d: | cut -f1 -d-)
+        _master_tag=$(git merge-base HEAD master)
+        git archive --prefix="$_pkg/" "$_master_tag" | gzip > "$_tmpdir/${_pkg}_${_version}.orig.tar.gz"
+
+        _archived="$_tmpdir/$_pkg"
+        mkdir "$_archived"
+        git archive HEAD | tar -x -C "$_archived/"
+
+        cd "$_archived/"
+        # shellcheck disable=SC2086
+        eatmydata dpkg-buildpackage $_dpkg_buildpackage_args
+        cd "$_tmpdir/"
+        rm -rf "${_archived:?}/"
+        mkdir "$_output"
+        cp -av "$_tmpdir/"* "$_output/"
+    )
+    local errc=$?
+    set -e
+    [ $errc -ne 0 ] && _fail=yes
+
+    # first remove temporary dir and ...
+    if [ -n "$_tmpdir" ] && [ -d "$_tmpdir" ]; then
+        rm -rf "${_tmpdir:?}/"
+    fi
+
+    # ... then return on error
+    if [ "$_fail" = "yes" ]; then
+        return 255
+    fi
+}
+
+if [ $# -eq 0 ]; then
+    help
+    exit 1
+fi
+
+while [ -n "$1" ]; do
+    case "$1" in
+        "deps"|"bump"|"make")
+            ("$@")
+            exit $?
+            ;;
+        "-v"|"--version")
+            version
+            exit 0
+            ;;
+        "-h"|"--help")
+            help
+            exit 0
+            ;;
+        -*)
+            error "unknown flag: $1"
+            exit 1
+            ;;
+        *)
+            error "unknown command: $1"
+            exit 1
+            ;;
+    esac
+    shift
+done
+
+exit $?

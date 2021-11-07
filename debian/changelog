@@ -1,0 +1,3478 @@
+amarok (2:2.9.999-1) unstable; urgency=medium
+
+  * Latest upstream git.
+  * Dropped all packages except for a single unified amarok package.
+  * Updated dependencies according to CMakeLists.txt.
+
+ -- Jakob Meng <jakobmeng@web.de>  Sun, 07 Nov 2021 18:00:00 +0100
+
+amarok (2:2.9.81-0) unstable; urgency=medium
+
+  * Update upstream git.
+  * Drop MySQL patch, upstream version.
+  * Re-add dependency on libmygpo-qt-dev for gpodder support.
+  * Add dependency on qtwebengine5-dev for wikipedia support.
+  * Rebuild against new Qt.
+  * Drop dependency on qtscript5-dev and libqt5webkit5-dev.
+  * Add dependency on qttols5-dev. 
+
+ -- Joe Yasi <joe.yasi@gmail.com>  Sat, 11 Apr 2020 22:59:26 -0400
+
+amarok (2:2.9.80+p19.10+git20200216.0440-0+yasi2~19.10) eoan; urgency=medium
+
+  * Update upstream git.
+
+ -- Joe Yasi <joe.yasi@gmail.com>  Sun, 16 Feb 2020 13:03:28 -0500
+
+amarok (2:2.9.80+p19.04+git20191004.1229-0+yasi4~19.10) eoan; urgency=medium
+
+  * Patch for MYSQL header change.
+  * Turn off MySQL embedded in build.
+
+ -- Joe Yasi <joe.yasi@gmail.com>  Sun, 27 Oct 2019 17:18:32 -0400
+
+amarok (2:2.9.80+p19.04+git20191004.1229-0+yasi3~19.10) eoan; urgency=medium
+
+  * Switch mysql dep to libmysqlclient-dev since the embedded one is gone.
+
+ -- Joe Yasi <joe.yasi@gmail.com>  Sat, 26 Oct 2019 16:40:45 -0400
+
+amarok (2:2.9.80+p19.04+git20191004.1229-0+yasi2~19.10) eoan; urgency=medium
+
+  * Drop dep on qjson-dev, that was Qt4. Qt5 includes the classes.
+
+ -- Joe Yasi <joe.yasi@gmail.com>  Sat, 26 Oct 2019 16:20:31 -0400
+
+amarok (2:2.9.80+p19.04+git20191004.1229-0+yasi1~19.10) eoan; urgency=medium
+
+  * Build for eoan.
+
+ -- Joe Yasi <joe.yasi@gmail.com>  Sat, 26 Oct 2019 13:53:38 -0400
+
+amarok (2:2.9.80+p19.04+git20191004.1229-0+yasi1~19.04) disco; urgency=medium
+
+  * Podcast download path patch upstreamed.
+  * Update snapshot to upstream git.
+
+ -- Joe Yasi <joe.yasi@gmail.com>  Sat, 26 Oct 2019 12:52:05 -0400
+
+amarok (2:2.9.80+p19.04+git20190920.0909-0+yasi2~19.04) disco; urgency=medium
+
+  * Update patch to fix podcast download paths.
+
+ -- Joe Yasi <joe.yasi@gmail.com>  Sun, 22 Sep 2019 12:30:34 -0400
+
+amarok (2:2.9.80+p19.04+git20190920.0909-0+yasi1~19.04) disco; urgency=medium
+
+  * New upstream git snapshot.
+
+ -- Joe Yasi <joe.yasi@gmail.com>  Sat, 21 Sep 2019 09:55:10 -0400
+
+amarok (2:2.9.80+p19.04+git20190819.0015-0+yasi1~19.04) disco; urgency=medium
+
+  * Drop obsolete dep on kdemultimedia-kio-plugins.
+  * Fix podcast download paths.
+
+ -- Joe Yasi <joe.yasi@gmail.com>  Wed, 21 Aug 2019 20:02:57 -0400
+
+amarok (2:2.9.80+p19.04+git20190819.0015-0) disco; urgency=high
+
+  [ Clive Johnston ]
+  * Updated VCS to reflect the move to Launchpad git
+  * Updated the watch file to be able to find new stable/unstable sources
+  * Disable patches which won't apply
+  * Remove old .bzr-builddeb files
+
+  [ Rik Mills ]
+  * Update build deps for KF5 and other changes
+  * Remove old Qt4 based runtime deps
+
+  [ Kubuntu CI ]
+  * Automatic Ubuntu CI Build
+
+ -- Kubuntu CI <kubuntu-ci@lists.launchpad.net>  Mon, 19 Aug 2019 00:15:39 +0000
+
+amarok (2:2.9.0-0ubuntu6) cosmic; urgency=medium
+
+  * Drop obsolete strigi build depends.
+
+ -- Rik Mills <rikmills@kubuntu.org>  Wed, 01 Aug 2018 07:38:23 +0100
+
+amarok (2:2.9.0-0ubuntu5) cosmic; urgency=medium
+
+  * No-change rebuild for ffmpeg soname changes.
+
+ -- Matthias Klose <doko@ubuntu.com>  Thu, 19 Jul 2018 08:46:05 +0000
+
+amarok (2:2.9.0-0ubuntu4) cosmic; urgency=medium
+
+  * As per Debian, disable the gpodder.net support. libmygpo-qt has
+    switched to Qt5, and Qt4 based Amarok FTBFS against this
+
+ -- Rik Mills <rikmills@kubuntu.org>  Tue, 19 Jun 2018 08:52:56 +0100
+
+amarok (2:2.9.0-0ubuntu3) cosmic; urgency=medium
+
+  * No-change rebuild for libmygpo-qt soname change.
+
+ -- Matthias Klose <doko@ubuntu.com>  Tue, 19 Jun 2018 08:31:05 +0200
+
+amarok (2:2.9.0-0ubuntu2) bionic; urgency=medium
+
+  * Properly disable mp3tunes build in configure
+
+ -- Rik Mills <rikmills@kubuntu.org>  Sun, 18 Mar 2018 09:12:26 +0000
+
+amarok (2:2.9.0-0ubuntu1) bionic; urgency=medium
+
+  [ Clive Johnston ]
+  * New upstream beta release (2.8.90)
+  * Move a few dev files to not-installed
+
+  [ Rik Mills ]
+  * New upstream release (2.9.0) (LP: #1756066)
+  * Drop upstreamed kubuntu_mysqle_myisam_recover_options.diff
+  * Build depend on liblz4-dev (LP: #1690637)
+  * libav* build deps for ffmpeg
+  * Disable build of mp3tunes service. FTBFS on bionic
+  * Update install files and wrap-and-sort
+
+ -- Rik Mills <rikmills@kubuntu.org>  Thu, 15 Mar 2018 23:30:20 +0000
+
+amarok (2:2.8.0-0ubuntu9) xenial; urgency=medium
+
+  * Add kubuntu_mysqle_myisam_recover_options.diff, based on
+    patch from https://bugs.kde.org/show_bug.cgi?id=354255 (LP:#1571215)
+
+ -- Michael Marley <michael@michaelmarley.com>  Sat, 16 Apr 2016 14:31:34 -0400
+
+amarok (2:2.8.0-0ubuntu8) xenial; urgency=medium
+
+  * mysql-server-core does not exist; it is virtual-mysql-server-core. So fix
+    that so the Build-Depends-Indep alternative will work, and while we're
+    there also switch from 5.6 to 5.7 since 5.6 will cease to exist in Xenial
+    soon.
+  * libmysqld-dev replaces libmysqld-pic in MySQL 5.7, so swap that
+    Build-Depends.
+  * Bump libmysqld-dev versioned build dependency to 5.7.11-0ubuntu6~, since
+    ubuntu6 is the first version that correctly depends on libnuma-dev and
+    libaio-dev, and we FTBFS otherwise.
+
+ -- Robie Basak <robie.basak@ubuntu.com>  Wed, 13 Apr 2016 11:32:21 +0000
+
+amarok (2:2.8.0-0ubuntu7) xenial; urgency=medium
+
+  * Rebuild against libmysqlclient20.
+
+ -- Robie Basak <robie.basak@ubuntu.com>  Tue, 05 Apr 2016 12:12:54 +0000
+
+amarok (2:2.8.0-0ubuntu6) wily; urgency=medium
+
+  * Depend on mysql 5.6
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Tue, 25 Aug 2015 00:11:42 +0100
+
+amarok (2:2.8.0-0ubuntu5) wily; urgency=medium
+
+  * No change rebuild for taglib gcc5 transition
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 24 Aug 2015 23:31:42 +0100
+
+amarok (2:2.8.0-0ubuntu4) utopic; urgency=medium
+
+  * Compile without nepomuk
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 11 Aug 2014 11:40:12 +0200
+
+amarok (2:2.8.0-0ubuntu3) saucy; urgency=low
+
+  * Set amzdownloader to NoDisplay as the name is terrible and the UI
+    also doesn't do much in terms of affordance.
+    Using kubuntu_hide_amz.diff.
+
+ -- Harald Sitter <apachelogger@kubuntu.org>  Wed, 25 Sep 2013 13:25:47 +0200
+
+amarok (2:2.8.0-0ubuntu2) saucy; urgency=low
+
+  * Update debian/rules and debian/amarok.install and 
+    amarok-common.install to explicitly install
+    context applet analyzer related files to
+    non-arm architecture. 
+
+ -- Howard Chan <smartboyhw@gmail.com>  Fri, 16 Aug 2013 21:27:23 +0800
+
+amarok (2:2.8.0-0ubuntu1) saucy; urgency=low
+
+  [ Howard Chan ]
+  * New upstream release (LP：#1212722)
+  * Refresh debian_disable_qtscriptbindings_check_fix.diff due to
+    fuzz.
+
+  [ Philip Muškovac ]
+  * Bump build-dep on libmygpo-qt to >= 1.0.7 to match cmake 
+  * Add link to stable release location to watch file
+
+ -- Howard Chan <smartboyhw@gmail.com>  Fri, 16 Aug 2013 00:09:34 +0800
+
+amarok (2:2.7.90-0ubuntu1) saucy; urgency=low
+
+  * New upstream release
+  * Update amarok.install and amarok-common.install
+    for new files.
+  * Update debian_find_mysql_fix.diff and 
+    debian_disable_qtscriptbindings_check_fix.diff.
+  * Remove 0001-Remove-usage-of-fake-Amarok-Mockup-theme.patch
+    since it is included in this upstream release. 
+
+ -- Howard Chan <smartboyhw@gmail.com>  Thu, 04 Jul 2013 22:16:53 +0800
+
+amarok (2:2.7.1-0ubuntu3) saucy; urgency=low
+
+  * Add 0001-Remove-usage-of-fake-Amarok-Mockup-theme.patch from upstream so
+    amarok doesn't crash with KDE SC 4.11
+
+ -- Philip Muškovac <yofel@kubuntu.org>  Mon, 24 Jun 2013 22:09:44 +0200
+
+amarok (2:2.7.1-0ubuntu2) saucy; urgency=low
+
+  * Drop kubuntu_qtwebkit_crash.diff, applied upstream
+
+ -- Rohan Garg <rohangarg@kubuntu.org>  Sat, 18 May 2013 03:15:13 +0530
+
+amarok (2:2.7.1-0ubuntu1) saucy; urgency=low
+
+  * New upstream release
+
+ -- Jessie A. Morris <jessie@jessieamorris.com>  Wed, 15 May 2013 22:40:31 +0000
+
+amarok (2:2.7.0-0ubuntu3) saucy; urgency=low
+
+  * Add kubuntu_qtwebkit_crash.diff
+    Fix crashes on track change in QtWebKit LP: #1177781
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Wed, 08 May 2013 14:09:54 +0100
+
+amarok (2:2.7.0-0ubuntu2) raring; urgency=low
+
+  * Add missing epoch to several breaks/replaces versions
+
+ -- Philip Muškovac <yofel@kubuntu.org>  Sun, 17 Feb 2013 01:06:45 +0100
+
+amarok (2:2.7.0-0ubuntu1) raring; urgency=low
+
+  * New upstream release
+  * Remove spectrum analyzer file from debian/rules, no longer upstream
+  * Add build-dep on libofa0-dev
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Fri, 18 Jan 2013 15:06:21 +0000
+
+amarok (2:2.6.90-0ubuntu3) raring; urgency=low
+
+  * remove spectrum analyzer files from amarok.install, already in debian/rules
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 07 Jan 2013 10:46:42 +0000
+
+amarok (2:2.6.90-0ubuntu2) raring; urgency=low
+
+  * Install libamarok_service_lastfm_shared.so, required by
+    the last.fm plugin
+
+ -- Rohan Garg <rohangarg@kubuntu.org>  Sun, 16 Dec 2012 17:00:58 +0000
+
+amarok (2:2.6.90-0ubuntu1) raring; urgency=low
+
+  * New upstream release [LP: #1090689]
+    - Drop 0001-port-to-liblastfm1-api.patch
+    - Add nepomuk-core-dev, clamz as build-deps
+    - Update install files
+    - Update not-installed
+    - Update watch file
+
+ -- Rohan Garg <rohangarg@kubuntu.org>  Sat, 15 Dec 2012 15:24:07 +0000
+
+amarok (2:2.6.0-0ubuntu3) raring; urgency=low
+
+  * Fix typo ( media-player-infoxs => media-player-info )
+
+ -- Rohan Garg <rohangarg@kubuntu.org>  Wed, 14 Nov 2012 15:47:00 +0000
+
+amarok (2:2.6.0-0ubuntu2) quantal; urgency=low
+
+  * Build-dep on libgpod-dev not libgpod-dev-nogtk as it
+    no longer depends on gtk LP: #260091
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Tue, 21 Aug 2012 11:20:49 +0100
+
+amarok (2:2.6.0-0ubuntu1) quantal; urgency=low
+
+  * New upstream release
+  * Recommend media-player-info
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Tue, 14 Aug 2012 11:08:28 +0100
+
+amarok (2:2.6~rc1-0ubuntu2) quantal; urgency=low
+
+  * remove spectrum analyzer files from amarok.install, already in debian/rules
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Fri, 10 Aug 2012 15:15:44 +0100
+
+amarok (2:2.6~rc1-0ubuntu1) quantal; urgency=low
+
+  * New RC release 2.5.96
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Tue, 07 Aug 2012 10:36:40 +0100
+
+amarok (2:2.6~beta1-1ubuntu2) quantal; urgency=low
+
+  * Add 0001-port-to-liblastfm1-api.patch from upstream (target 2.7) fixing
+    compatibiity with liblastfm1, fairly trivial and simple patch (LP: #1015526)
+  * Don't depend on now removed kdemultimedia-dev (is not used anymore anyway)
+  * Bump liblastfm build dep to 1.0
+
+ -- Harald Sitter <apachelogger@ubuntu.com>  Wed, 20 Jun 2012 14:04:18 +0200
+
+amarok (2:2.6~beta1-1ubuntu1) quantal; urgency=low
+
+  * Merge from Debian experimental, remaining changes: (LP: 1008645)
+    - Don't build-depend on libavformat-dev and libofa0-dev as libavcodec*
+      is not allowed on cd images.
+    - Don't build-dep on libqt4-opengl-dev on armel and armhf and install
+      file manually in debian/rules
+    - build-dep on libmygpo
+    - Add epoch "2:" to the version number.
+    - More complete not-installed
+    - Keep build-dep libmysqld-pic at 5.1.36-2 (new version not yet  in archive)
+    - Do not manually compress with xz, we handle this in pkg-kde and explicitly
+      doing it prevents global control
+  * Do not suggest libxine1-ffmpeg as this should have been in the Phonon
+    backend to begin with and phonon-xine is no longer used anyway.
+  * amarok-common breaks amarok (<< 2.6~beta1-1ubuntu1~) due to wrongly
+    packaged desktop files in a previous release
+  * Drop patches applied upstream:
+    - kubuntu_Make-OpenGl-a-soft-dependency.diff
+    - kubuntu_CMake-Move-occurence-of-OPENGL_INCLUDE_DIR-var.diff
+    - kubuntu_kdelibs4.8_context_view.diff
+  * Refreshed patch kubuntu_mysql_pic_library_path.diff
+  * amarok-doc to Break and Replace all previous amarok-help-* packages
+    having one big package and keep the diff small was deemed more reasonable
+    on IRC
+
+ -- Harald Sitter <apachelogger@ubuntu.com>  Tue, 05 Jun 2012 15:43:51 +0200
+
+amarok (2.6~beta1-1) experimental; urgency=low
+
+  * New upstream development release (2.5.90).
+  * Drop upstream_fix_lyrics_autorefresh_in_some_cases.patch, merged upstream.
+  * Adapt debian_find_mysql_fix.diff to upstream changes.
+  * Update debian_fix_doc_nl_build.diff patch to fix a new build problem with
+    KDE 4.7, require kdelibs5-dev 4:4.7.
+  * Update install files.
+  * Remove ${perl:Depends} from amarok-doc Depends, not needed.
+
+ -- Modestas Vainius <modax@debian.org>  Sun, 03 Jun 2012 01:17:19 +0300
+
+amarok (2.5.0-3) unstable; urgency=low
+
+  * Depend on libmysql-pic 5.5.23+dfsg so we can drop libssl-dev from
+    Build-Depends.
+  * Compress all deb packages with xz, not just amarok-dbg.
+  * Split off Amarok Handbook into amarok-doc package.
+  * Update debian/copyright.
+  * Fix unsafe argument assignment in the debian_mysqle_force_defaults_file
+    patch. Thanks to Pino Toscano for heads up.
+
+ -- Modestas Vainius <modax@debian.org>  Sat, 26 May 2012 19:24:16 +0300
+
+amarok (2.5.0-2) unstable; urgency=low
+
+  * Drop mysql-server-5.1 from Build-Depends-Indep. mysql-server-core-5.1 was
+    split off long ago (it's in squeeze).
+  * Prefer mysql-server-core-5.5 in Build-Depends-Indep. Alternatively depend
+    on the mysql-server-core virtual package.
+  * Bump Standards-Version to 3.9.3: no changes needed.
+  * Since the package is compat=9, rebuild againt debhelper 9.20120419 should
+    enable hardening flags. (Closes: #653354)
+  * Improve debian_find_mysql_fix.diff to work with Debian libmysqld-pic
+    5.5.23.
+  * Add libssl-dev and libaio-dev [linux-any] to Build-Depends because they are
+    needed for libmysqld-pic 5.5.23.
+  * Force MySQLe to use our custom defaults file. This makes MySQLe independent
+    from system MySQL configuration. (Closes: #672207, #673403)
+    Patch debian_mysqle_force_defaults_file.diff
+  * Bump debhelper build dependency to >= 9.
+
+ -- Modestas Vainius <modax@debian.org>  Mon, 21 May 2012 20:38:19 +0300
+
+amarok (2.5.0-1) unstable; urgency=low
+
+  * New upstream release.
+  * Refresh patches.
+  * This version of amarok requires kdelibs 4.6, bump build dependency.
+  * Bump compat to 9 in order to get automatic build flags handling.
+  * Ship Russian documentation translations.
+  * Add debian_find_mysql_fix.diff patch to fix MySQL detection at cmake stage.
+  * Update install files.
+  * Compress amarok-dbg package with xz.
+  * Fix doc/nl build with kdelibs 4.6 (patch debian_fix_doc_nl_build.diff).
+
+ -- Modestas Vainius <modax@debian.org>  Mon, 26 Dec 2011 14:04:49 +0200
+
+amarok (2:2.5.0-0ubuntu5) precise; urgency=low
+
+  * Install the spectrum-analyzer context applet.
+  * Don't export KUBUNTU_DESKTOP_POT anymore.
+  * Move localized handbooks into own packages named amarok-help-$lang.
+
+ -- Felix Geyer <debfx@ubuntu.com>  Sun, 12 Feb 2012 13:33:03 +0100
+
+amarok (2:2.5.0-0ubuntu4) precise; urgency=low
+
+  * Add kubuntu_kdelibs4.8_context_view.diff from upstream for
+    https://bugs.kde.org/290123 'Broken context view'
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Fri, 27 Jan 2012 10:52:46 +0000
+
+amarok (2:2.5.0-0ubuntu3) precise; urgency=low
+
+  * Fix typos in debian/rules
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Sat, 14 Jan 2012 15:03:23 +0000
+
+amarok (2:2.5.0-0ubuntu2) precise; urgency=low
+
+  * Add patch kubuntu_Make-OpenGl-a-soft-dependency.diff and
+    kubuntu_CMake-Move-occurence-of-OPENGL_INCLUDE_DIR-var.diff
+    make OpenGL optional, thanks to Kevin Funk
+  * Don't build-dep on libqt4-opengl-dev on armel and armhf and install
+    file manually in debian/rules
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Thu, 12 Jan 2012 18:06:50 +0000
+
+amarok (2:2.5.0-0ubuntu1) precise; urgency=low
+
+  * New upstream release
+  * Use mysql 5.5 build-dep
+  * Add kubuntu_mysql_pic_library_path.diff because mysql_config no longer
+    reports mysql_pic library now that mysqlclient has moved
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Wed, 21 Dec 2011 17:44:37 +0000
+
+amarok (2:2.4.90-0ubuntu1~ppa2) oneiric; urgency=low
+
+  * Fix build dependency on libmygpo-qt-dev
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 14 Nov 2011 23:18:47 +0000
+
+amarok (2:2.4.90-0ubuntu1~ppa1) oneiric; urgency=low
+
+  * New upstream beta release, PPA build
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 14 Nov 2011 21:01:31 +0000
+
+amarok (2:2.4.3-1ubuntu3) UNRELEASED; urgency=low
+
+  * Fix kubuntu-devel address in maintainer field.
+
+ -- Felix Geyer <debfx-pkg@fobos.de>  Mon, 07 Nov 2011 09:33:49 +0100
+
+amarok (2:2.4.3-1ubuntu2) oneiric; urgency=low
+
+  * Remove kubuntu_restricted_install.diff. Phonon-GStreamer (the default
+    Phonon backend) handles plugin installation itself.
+
+ -- Jonathan Thomas <echidnaman@kubuntu.org>  Fri, 16 Sep 2011 16:54:45 +0200
+
+amarok (2:2.4.3-1ubuntu1) oneiric; urgency=low
+
+  * Merge from Debian unstable, remaining changes:
+    - Don't build-depend on libavformat-dev and libofa0-dev as libavcodec*
+      is not allowed on cd images.
+    - Don't compress amarok-dbg with bzip2 as pkg-kde-tools uses lzma for
+      all packages.
+    - Set KUBUNTU_DESKTOP_POT in debian/rules.
+    - Add epoch "2:" to the version number.
+    - Keep the following patches:
+      + kubuntu/03_restricted_install.diff
+      + kubuntu/07_dont_ask_music_dir.diff
+  * Drop kubuntu/14_soundmenu_fix_desktop_file_path.diff and
+    kubuntu/16_mpris2_update_metadata.diff, applied upstream.
+  * Only install the documentation files that are actually used.
+
+ -- Felix Geyer <debfx-pkg@fobos.de>  Mon, 01 Aug 2011 19:31:55 +0200
+
+amarok (2.4.3-1) unstable; urgency=low
+
+  * New upstream release.
+  * Switch Vcs-* field to kde-extras repository. (Closes: #635292)
+  * Drop backport_no_kwallet_prompt_on_track_change.patch and
+    backport_arm_build_fix.patch - integrated upstream.
+  * Add upstream_fix_lyrics_autorefresh_in_some_cases.patch to fix lyrics
+    autorefresh in some cases.
+
+ -- Modestas Vainius <modax@debian.org>  Sat, 30 Jul 2011 18:00:09 +0300
+
+amarok (2.4.2-2) unstable; urgency=low
+
+  * Fix FTBFS on armel (backport_arm_build_fix.patch).
+
+ -- Modestas Vainius <modax@debian.org>  Sun, 24 Jul 2011 17:29:30 +0300
+
+amarok (2.4.2-1) unstable; urgency=low
+
+  * New upstream release.
+  * Switch maintainer to Debian KDE Extras team, add myself to Uploaders,
+    document committing/uploading rules in README.source.
+  * Update documentation about Phonon backends in Amarok bug-presubj.
+    (Closes: #629208)
+  * Adapt debian_disable_qtscriptbindings_check_fix.diff to upstream changes.
+  * Add ${perl:Depends} to amarok-common Depends.
+  * Update install files.
+  * Backport a patch to fix a bug which caused KWallet to prompt for a password
+    on every track change (backport_no_kwallet_prompt_on_track_change.patch).
+  * Override lintian "amarok: no-symbols-control-file".
+  * Drop amarok-engine-xine (<< 2) and amarok-engine-yauap (<< 2) from amarok
+    Conflicts. No longer relevant for stable.
+
+ -- Modestas Vainius <modax@debian.org>  Sun, 24 Jul 2011 12:26:59 +0300
+
+amarok (2.4.1-2) unstable; urgency=low
+
+  * Build depend on kdelibs5-dev 4:4.5 and ship plugins for NFS and SMB
+    collection support. (Closes: #620741)
+
+ -- Modestas Vainius <modax@debian.org>  Wed, 01 Jun 2011 15:10:31 +0300
+
+amarok (2:2.4.1-1ubuntu2) oneiric; urgency=low
+
+  * Rebuild with scour disabled in pkg-kde-tools as it caused rendering
+    bugs. (LP: #786192)
+
+ -- Felix Geyer <debfx-pkg@fobos.de>  Fri, 27 May 2011 10:17:43 +0200
+
+amarok (2:2.4.1-1ubuntu1) oneiric; urgency=low
+
+  [ Felix Geyer ]
+  * Merge from Debian unstable, remaining changes:
+    - Build-depend on GTK version of libgpod.
+    - Don't build-depend on libavformat-dev and libofa0-dev as libavcodec*
+      is not allowed on cd images.
+    - Don't compress amarok-dbg with bzip2 as pkg-kde-tools uses lzma for
+      all packages.
+    - Set KUBUNTU_DESKTOP_POT in debian/rules. 
+    - Keep the following patches:
+      + kubuntu/03_restricted_install.diff
+      + kubuntu/07_dont_ask_music_dir.diff
+      + kubuntu/14_soundmenu_fix_desktop_file_path.diff
+      + kubuntu/16_mpris2_update_metadata.diff
+  * Drop kubuntu/10_soundmenu_support.diff, not needed anymore.
+    - Drop libindicate-qt-dev from build-deps.
+  * Drop kubuntu/12_appmenu_fix.diff, merged upstream.
+  * Drop kubuntu/15_mpris2_fix_wrong_status.diff, fixed upstream.
+  * Move all patches from patches/kubuntu/ to patches/ and remove the numbers
+    in the filenames.
+
+  [ Tarun Kumar Mall ]
+  * kubuntu_restricted_install.diff: adapt to new upstream version.
+
+ -- Felix Geyer <debfx-pkg@fobos.de>  Sun, 08 May 2011 17:15:57 +0200
+
+amarok (2.4.1-1) unstable; urgency=low
+
+  * New upstream release.
+  * No longer recommend phonon-backend-xine. Stick to what phonon metapackage
+    depends on.
+  * Bump Standards-Version to 3.9.2: no changes needed.
+  * Drop backport_fix_plugin_version.diff, it was backported from upstream.
+  * Call dh in compat=8 compliant way.
+
+ -- Modestas Vainius <modax@debian.org>  Sun, 08 May 2011 00:21:26 +0300
+
+amarok (2.4.1~beta1-1) experimental; urgency=low
+
+  * New upstream beta release.
+  * Drop backport_mute_button_fix.diff - backported from upstream.
+  * Build depend on libqjson-dev.
+  * Update install files.
+  * Override amarok: embedded-library ... : libmysqlclient.
+  * Backport a patch as recommended by upstream to fix plugin version
+    (backport_fix_plugin_version.diff).
+
+ -- Modestas Vainius <modax@debian.org>  Sun, 20 Mar 2011 17:50:14 +0200
+
+amarok (2.4.0-2) unstable; urgency=low
+
+  * Make amarok-dbg suggest libqtwebkit4-dbg.
+  * Build depend on libqtwebkit-dev | libqt4-dev (<< 4:4.7.0). Closes: #618209
+  * Backport backport_mute_button_fix.diff patch to really fix mute button.
+    (Closes: #600159)
+
+ -- Modestas Vainius <modax@debian.org>  Sun, 20 Mar 2011 16:00:14 +0200
+
+amarok (2.4.0-1) unstable; urgency=low
+
+  * New upstream release:
+    - unmute should work properly. (Closes: #600159)
+  * Remove patches previously backported from upstream:
+    - backport_FLAC_BPM_tags_fix.diff;
+    - 0001-Re-add-some-tests-for-unprintable-but-also-invalid-c.patch.
+  * Refresh debian_disable_qtscriptbindings_check_fix.diff patch.
+  * Adapt debian_mysqle_amarok_local_errmsg_feature.diff to upstream changes.
+  * Build depend on libavformat-dev (>= 4:0.5).
+  * Update install files.
+  * Build depend on libofa0-dev.
+  * Update lintian-overrides.
+  * Add mysql-server-core-5.1 as a preferred alternative to mysql-server-5.1 in
+    Build-Depends-Indep.
+
+ -- Modestas Vainius <modax@debian.org>  Fri, 14 Jan 2011 22:39:04 +0200
+
+amarok (2:2.4.0-0ubuntu5) natty; urgency=low
+
+  * Add 15_mpris2_fix_wrong_status.diff from master, correctly update
+    the playback status property
+  * Add 16_mpris2_update_metadata.diff from Aurelien Gateau, notify the
+    outside world of track changes
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 04 Apr 2011 13:14:00 +0100
+
+amarok (2:2.4.0-0ubuntu4) natty; urgency=low
+
+  * Rebuild with libindicate-qt 0.2.5.91-0ubuntu2 to fix dependency
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Wed, 09 Feb 2011 13:38:11 +0000
+
+amarok (2:2.4.0-0ubuntu3) natty; urgency=low
+
+  * Build against libindicate-qt 0.2.5.91 for soname transition
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 07 Feb 2011 18:00:24 +0000
+
+amarok (2:2.4.0-0ubuntu2) natty; urgency=low
+
+  * Restore ampache support. (LP: #706055)
+    - Install libampache_account_login.so
+  * Don't depend on phonon-backend, the phonon package already takes
+    care of this.
+
+ -- Felix Geyer <debfx-pkg@fobos.de>  Sun, 23 Jan 2011 13:36:38 +0100
+
+amarok (2:2.4.0-0ubuntu1) natty; urgency=low
+
+  * New upstream release.
+  * Adapt patches to new upstream version.
+  * Reactivate mysqle_amarok_local_errmsg_feature.diff.
+  * Drop kubuntu/11_soundmenu_mpris2.0.diff, merged upstream.
+  * Drop kubuntu/13_arm_compile.diff, merged upstream.
+  * Add kubuntu/14_soundmenu_fix_desktop_file_path.diff to fix Amarok not
+    registering with the sound indicator menu. (LP: #693316)
+
+ -- Felix Geyer <debfx-pkg@fobos.de>  Wed, 12 Jan 2011 01:10:22 +0100
+
+amarok (2:2.3.90-0ubuntu2) natty; urgency=low
+
+  * Add kubuntu/13_arm_compile.diff to fix compile on ARM
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Thu, 09 Dec 2010 16:25:23 +0000
+
+amarok (2:2.3.90-0ubuntu1) natty; urgency=low
+
+  * New upstream beta release
+  * Disable mysqle_amarok_local_errmsg_feature.diff, files gone
+  * Disable kubuntu/11_soundmenu_mpris2.0.diff no longer applies
+  * Remove kubuntu/13_validate_xml.diff now upstream
+  * Remove kubuntu/14_initial_applet_size.diff upstream
+  * No not add build-dep on libofa0-dev, this requires libavcodecs which
+    can not go on the CD
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 06 Dec 2010 18:04:33 +0000
+
+amarok (2.3.2-2) experimental; urgency=low
+
+  * Backport 0001-Re-add-some-tests-for-unprintable-but-also-invalid-c.patch
+    as per upstream suggestion in order to fix problems in the collection
+    scanner emitting non-well-formed XML when unprintable characters are
+    encountered in the tags of the audio files.
+
+ -- Modestas Vainius <modax@debian.org>  Sat, 25 Sep 2010 13:02:26 +0300
+
+amarok (2.3.2-1) experimental; urgency=low
+
+  * New upstream release:
+    - Amarok ships documentation now;
+    - tray icon is back in non-KDE environments; (Closes: #587720, #572757)
+    - solves a bunch of dynamic collection problems; (Closes: #539471)
+    - fixes saving of last.fm account data outside kwallet; (Closes: #550890)
+    - fixes crash when scanning media collection/library. (Closes: #585102)
+  * Drop debian/mysql_no_openssl_fix.diff patch, the problem was fixed upstream
+    differently.
+  * Adapt debian/mysqle_amarok_local_errmsg_feature.diff patch to upstream
+    changes.
+  * Refresh disable_qtscriptbindings_check_fix.diff patch.
+  * Move patches out of debian/ subdir and prefix their filenames with debian_
+    instead.
+  * Bump Standards-Version to 3.9.1: add Breaks next to Replaces for
+    amarok-utils.
+  * Backport FLAC BPM tag fix as requested by upstream (patch
+    backport_FLAC_BPM_tags_fix.diff).
+  * Bump libmtp-dev dependency to 1.0.0 (following upstream requirement).
+  * Update install files.
+
+ -- Modestas Vainius <modax@debian.org>  Tue, 21 Sep 2010 02:09:53 +0300
+
+amarok (2:2.3.2-0ubuntu6) natty; urgency=low
+
+  * In 03_restricted_install.diff install gstreamer instead of xine
+    plugin
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Thu, 18 Nov 2010 16:53:57 +0000
+
+amarok (2:2.3.2-0ubuntu5) natty; urgency=low
+
+  * Rebuild against kdelibs5-dev 4.5.2a-0ubuntu2 for libkutils4 transition
+
+ -- Alessandro Ghersi <alessandro-ghersi@kubuntu.org>  Fri, 22 Oct 2010 07:15:54 +0200
+
+amarok (2:2.3.2-0ubuntu4) maverick; urgency=low
+
+  * Add kubuntu/14_initial_applet_size.diff to fix incorrect applet size
+    on startup.
+
+ -- Felix Geyer <debfx-pkg@fobos.de>  Sat, 02 Oct 2010 11:45:27 +0200
+
+amarok (2:2.3.2-0ubuntu3) maverick; urgency=low
+
+  * Make sure clicking on "Amarok" in the Sound Menu raises it, even if it
+    has been minimized to tray, patch from Aurélien Gâteau.
+    - update kubuntu/11_soundmenu_mpris2.0.diff
+
+ -- Felix Geyer <debfx-pkg@fobos.de>  Thu, 30 Sep 2010 22:59:25 +0200
+
+amarok (2:2.3.2-0ubuntu2) maverick; urgency=low
+
+  * Add kubuntu/13_validate_xml.diff recommended by upstream
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Thu, 23 Sep 2010 17:02:29 +0100
+
+amarok (2:2.3.2-0ubuntu1) maverick; urgency=low
+
+  * New upstream release.
+  * Drop patches that are applied upstream:
+    - debian/mysql_no_openssl_fix.diff
+    - kubuntu/08_fix_ftbfs_glib_2.25.diff
+    - kubuntu/09_fix_applet_destructor_crash.diff
+  * Drop patch that is not needed anymore:
+    - kubuntu/05_kstatusnotifieritem_gnome_support.diff
+  * Adapt patch to new upstream version:
+    - debian/mysqle_amarok_local_errmsg_feature.diff
+    - kubuntu/10_soundmenu_support.diff
+    - kubuntu/11_soundmenu_mpris2.0.diff
+  * Update install files.
+
+ -- Felix Geyer <debfx-pkg@fobos.de>  Thu, 16 Sep 2010 12:47:14 +0200
+
+amarok (2:2.3.1-1ubuntu8) maverick; urgency=low
+
+  * Add 12_appmenu_fix.diff from Aurélien Gâteau:
+    When running Amarok with the appmenu Plasma widget, make sure going to
+    "Internet > Magnatune" or any other service does not replace the menubar
+    with a weird one-entry menubar.
+
+ -- Felix Geyer <debfx-pkg@fobos.de>  Wed, 15 Sep 2010 00:43:11 +0200
+
+amarok (2:2.3.1-1ubuntu7) maverick; urgency=low
+
+  * Update 11_soundmenu_mpris2.0.diff to use correct mpris interface
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Tue, 31 Aug 2010 10:59:34 +0100
+
+amarok (2:2.3.1-1ubuntu6) maverick; urgency=low
+
+  * Add 11_soundmenu_mpris2.0.diff from Aurlien Gateau, adds mpris2
+    support to Amarok, closes LP: #617367
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Thu, 26 Aug 2010 15:46:10 +0100
+
+amarok (2:2.3.1-1ubuntu5) maverick; urgency=low
+
+  * Add 09_fix_applet_destructor_crash.diff, backported from upstream to fix
+    a crash when Amarok starts/quits.
+
+ -- Felix Geyer <debfx-pkg@fobos.de>  Wed, 11 Aug 2010 11:33:17 +0200
+
+amarok (2:2.3.1-1ubuntu4) maverick; urgency=low
+
+  * Add back 10_soundmenu_support.diff, refreshed
+  * Add build-dep on libindicate-qt-dev
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Wed, 11 Aug 2010 00:57:33 +0100
+
+amarok (2:2.3.1-1ubuntu3) maverick; urgency=low
+
+  * Add export KUBUNTU_DESKTOP_POT=extragear-multimedia_amarok
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 26 Jul 2010 17:48:46 +0100
+
+amarok (2:2.3.1-1ubuntu2) maverick; urgency=low
+
+  * Rebuilt for qtwebkit transition
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Wed, 21 Jul 2010 09:49:55 +0100
+
+amarok (2:2.3.1-1ubuntu1) maverick; urgency=low
+
+  * Merge with Debian unstable, remaining changes:
+    - Build-depend on GTK version of libgpod for coinstallability with
+      kipi-plugins.
+    - Move libqt4-sql-sqlite from Suggests to Recommends.
+    - Don't compress amarok-dbg with bzip2 as pkg-kde-tools uses lzma for
+      all packages.
+    - Keep the following patches:
+      + kubuntu/03_restricted_install.diff
+      + kubuntu/05_kstatusnotifieritem_gnome_support.diff
+      + kubuntu/07_dont_ask_music_dir.diff
+  * Fix FTBFS with glib >= 2.25.
+    - Add kubuntu/08_fix_ftbfs_glib_2.25.diff
+  * Drop patches that are applied upstream:
+    - kubuntu/05_kstatusnotifieritem.diff
+    - kubuntu/06_mimetypes.diff
+    - kubuntu/08_crash_fix_info_applet.diff
+
+ -- Felix Geyer <debfx-pkg@fobos.de>  Mon, 31 May 2010 10:43:51 +0200
+
+amarok (2.3.1-1) unstable; urgency=low
+
+  * New upstream release.
+  * Add libgpod-dev as an alternative to libgpod-nogtk-dev in Build-Depends
+    (Closes: #580057).
+  * Update install files.
+
+ -- Modestas Vainius <modax@debian.org>  Sun, 30 May 2010 22:14:22 +0300
+
+amarok (2.3.1~beta1-1) experimental; urgency=low
+
+  * New upstream release:
+    - different albums with the same title should no longer share the same
+      cover (Closes: #490362).
+  * Update patches:
+   - general/crash_fix_info_applet.diff -remove, stolen from upstream;
+   - debian/mysql_no_openssl_fix.diff - adapt to upstream changes;
+   - debian/mysqle_amarok_local_errmsg_feature.diff - adapt to upstream
+     changes;
+  * Update install files.
+
+ -- Modestas Vainius <modax@debian.org>  Fri, 16 Apr 2010 19:30:18 +0300
+
+amarok (2.3.0-2) unstable; urgency=low
+
+  * Add general/crash_fix_info_applet patch that fixes the crash on startup
+    with Info applet on Qt 4.6.{0,1,2}.
+
+ -- Modestas Vainius <modax@debian.org>  Thu, 15 Apr 2010 00:34:42 +0300
+
+amarok (2.3.0-1) unstable; urgency=low
+
+  * New upstream release.
+  * Refresh patches.
+  * Update amarok-common.install.
+  * Fix hyphen-used-as-minus-sign usr/share/man/man1/amarok.1.gz:149.
+  * Do not use asterisks in debian/NEWS, use normal paragraphs instead.
+
+ -- Modestas Vainius <modax@debian.org>  Mon, 15 Mar 2010 01:33:17 +0200
+
+amarok (2:2.3.0-0ubuntu4) lucid; urgency=low
+
+  [ Scott Kitterman ]
+  * Add amarok replaces amarok-common (<< 2:2.0.2) for better upgrade support
+
+  [ Alessandro Ghersi ]
+  * amarok-utils replaces amarok (<= 2:2.2.0-0ubuntu2) (LP: #556535)
+
+  [ Harald Sitter ]
+  * In kubuntu/03_restricted_install.diff send the translated programName
+    to the restrictedInstall interface instead of a hardcoded name
+    + Get rid of unused var warning due to this patch
+
+ -- Harald Sitter <apachelogger@ubuntu.com>  Thu, 08 Apr 2010 18:04:54 +0200
+
+amarok (2:2.3.0-0ubuntu3) lucid; urgency=low
+
+  [ Christian Mangold ]
+  * Add 08_crash_fix_info_applet.diff as suggested upstream. It fixes a 
+    crash on startup when info applet is enabled and can be removed 
+    after Qt 4.6.3 is in the archive.
+
+  [ Jonathan Riddell ]
+  * Remove debian-changes-2:2.3.0-0ubuntu2
+
+ -- Christian Mangold <neversfelde@ubuntu.com>  Mon, 29 Mar 2010 19:34:02 +0200
+
+amarok (2:2.3.0-0ubuntu2) lucid; urgency=low
+
+  * Update 05_kstatusnotifieritem.diff from Aurelien Gateau, allows icon
+    overlay in systray
+  * Add 05_kstatusnotifieritem_gnome_support.diff from Aurelien Gateau,
+    workaround limited Gnome support in new systray
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 29 Mar 2010 13:27:27 +0100
+
+amarok (2:2.3.0-0ubuntu1) lucid; urgency=low
+
+  [ Mackenzie Morgan ]
+  * New upstream release
+    - LP: #395876, #438268, #447534, #456139, #466949, #343716, #521389, #540232
+  * patches/kubuntu/06_mimetypes.diff: (LP: #191475)
+    - Add x-content/audio-cdda and x-content/audio-player to src/amarok.desktop
+
+  [ Jonathan Riddell ]
+  * Update debian/patches/kubuntu/05_kstatusnotifieritem.diff from Aurelien Gateau
+
+  [ Jonathan Thomas ]
+  * Add kubuntu/07_dont_ask_music_dir.diff, since ~/Music is a sensible default
+    that we set by, well, default (LP: #543463)
+
+ -- Mackenzie Morgan <maco.m@ubuntu.com>  Thu, 11 Mar 2010 20:05:30 -0500
+
+amarok (2.3~beta1-1) experimental; urgency=low
+
+  * New upstream development release (2.2.2.90).
+  * Resync patches:
+    - general/scanning_crash_backport.diff - drop, stolen from upstream;
+    - debian/disable_qtscriptbindings_check_fix.diff - refresh;
+    - debian/mysql_no_openssl_fix.diff - adapt to upstream changes;
+    - debian/mysqle_amarok_local_errmsg_feature.diff - refresh.
+  * Update Standards-Version to 3.8.4: no changes needed.
+  * Update install files.
+  * Compress amarok-dbg with bzip2.
+  * Bump KDE build depends to 4:4.3.0.
+
+ -- Modestas Vainius <modax@debian.org>  Sun, 14 Feb 2010 03:35:21 +0200
+
+amarok (2:2.2.2.90-0ubuntu2) lucid; urgency=low
+
+  * Add kubuntu/05_kstatusnotifieritem.diff from Aurelien Gateau, ports
+    systray icon to KStatusNotifierItem, upstream merge
+    http://gitorious.org/amarok/amarok/merge_requests/130
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Fri, 26 Feb 2010 12:13:58 +0000
+
+amarok (2:2.2.2.90-0ubuntu1) lucid; urgency=low
+
+  * New upstream beta release
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 15 Feb 2010 17:35:42 +0000
+
+amarok (2.2.2-1) unstable; urgency=low
+
+  * New upstream release.
+  * Suggest moodbar, add a note about it to README.Debian.
+  * Replace "KDE 4 technology platform" with official "KDE Platform" in amarok
+    package description.
+  * Refresh patches.
+  * Add patch scanning_crash_backport.diff from upstream. Fixes a crash when
+    scanning a local collection.
+
+ -- Modestas Vainius <modax@debian.org>  Sun, 10 Jan 2010 16:35:01 +0200
+
+amarok (2:2.2.2-0ubuntu1) lucid; urgency=low
+
+  * New upstream release
+  * Add patch kubuntu/04_scanning_crash.diff as advised by upstream
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 11 Jan 2010 11:20:59 +0000
+
+amarok (2:2.2.2~beta1-1ubuntu2) lucid; urgency=low
+
+  * Build against new liblastfm
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Thu, 07 Jan 2010 19:25:59 +0000
+
+amarok (2:2.2.2~beta1-1ubuntu1) lucid; urgency=low
+
+  * Merge with Debian Experimental, remaining changes:
+    - Keep conflicts/replaces on amarok-kde4* packages
+    - Build-depend on GTK version of libgpod for coinstallability with
+      kipi-plugins
+    - Move libqt4-sql-sqlite from Suggests to Recommends
+    - Make amarok-common Replace amarok (<< 2:2.0.0) to make 1.4 -> 2.x upgrades
+      work properly
+    - Keep the following patches:
+      + kubuntu_03_restricted_install.diff
+      + kubuntu_04_fix_playlist_layout.diff
+  * Include /usr/lib/kubuntu-desktop-i18n/debhelper/kubuntu.mk in debian/rules
+    for translations support in Kubuntu
+
+ -- Jonathan Thomas <echidnaman@kubuntu.org>  Sun, 03 Jan 2010 12:18:32 -0500
+
+amarok (2.2.2~beta1-1) experimental; urgency=low
+
+  * New upstream release.
+  * Remove DMUA field from debian/control. No longer needed.
+  * Git repository moved to my new DD account on alioth. Change Vcs fields in
+    debian/control accordingly.
+  * Use @debian.org address in the Maintainer field.
+  * Enable parallel building - pass --parallel option to dh.
+  * Resync patches:
+    - rename debian/mysql_linkage_fix.diff to debian/mysql_no_openssl_fix.diff,
+      remove more references to OpenSSL linkage;
+    - debian/*.diff - refresh offsets;
+    - general/playlist_default_layout_fix.diff - remove, upstream;
+    - general/random_mode_fix.diff - remove, upstream;
+
+ -- Modestas Vainius <modax@debian.org>  Thu, 10 Dec 2009 19:28:47 +0200
+
+amarok (2:2.2.1.90-0ubuntu1) lucid; urgency=low
+
+  * New upstream beta release
+  * Remove 04_fix_playlist_layout.diff, merged upstream
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 14 Dec 2009 14:37:38 +0000
+
+amarok (2.2.1-2) unstable; urgency=medium
+
+  * Fix "No default playlist layout on start bug" (patch
+    general/playlist_default_layout_fix).
+  * Fix random order playback (patch general/random_mode_fix.diff)
+    (Closes: #556239).
+  * Urgency medium due to RC bug fix.
+  * Add notes to NEWS.Debian, README.Debian and presubj that full collection
+    rescan might be needed when upgrading from 2.2.0 or earlier
+    (Closes: #556621).
+  * Reformat README.Debian a bit.
+
+ -- Modestas Vainius <modestas@vainius.eu>  Sat, 21 Nov 2009 11:04:41 +0200
+
+amarok (2:2.2.1-0ubuntu2) lucid; urgency=low
+
+  * Merge from Debian Unstable, remaining changes:
+    - Build-depend on cdbs and libgtk-dev
+    - Changed build-deps to depend on gtk version of libgpod so kpiti-plugins
+      and other packages depending on the gtk version can co-exist
+    - Keep conflicts/replaces on amarok-kde4* packages
+    - Add 04_fix_playlist_layout.diff to fix playlist layout as
+      per upstream request
+    - Move libqt4-sql-sqlite from Suggests to Recommends (LP: #430105)
+    - Make amarok-common Replace amarok (<< 2:2.0.0) to make 1.4 -> 2.x upgrades
+      work properly (LP: #421389)
+    - Bump amarok-util's replaces version on amarok to 0ubuntu3 (LP: #463426)
+    - Keep the following patches:
+      + kubuntu_03_restricted_install.diff
+      + kubuntu_04_fix_playlist_layout.diff
+   * amarok no longer replaces amarok-common (<< 2:2.1.1orig-0ubuntu2)
+   * Don't use dpkg-source 3.0 format
+
+ -- Christian Mangold <neversfelde@ubuntu.com>  Thu, 19 Nov 2009 19:47:03 +0100
+
+amarok (2:2.2.1-0ubuntu1) lucid; urgency=low
+
+  [Harald Sitter]
+  * New upstream release
+  * Drop 04_lyrics_script.diff (originated from upstream)
+  * Rename mysqle_linkage_fix.diff to mysql_linkage_fix.diff
+    and sync with Debian
+  * Add 04_fix_playlist_layout.diff to fix playlist layout as
+    per upstream request
+
+  [Christian Mangold]
+  * Update amarok-common.install with 
+    usr/share/kde4/apps/amarok/amarok.notifyrc 
+
+ -- Christian Mangold <neversfelde@ubuntu.com>  Sun, 15 Nov 2009 22:07:55 +0100
+
+amarok (2.2.1-1) unstable; urgency=low
+
+  * New upstream release.
+    - This particular crash with dynamic playlists has been fixed upstream
+      (Closes: #547946).
+  * Reformat debian/README.Debian and add a note about
+    /usr/share/bug/amarok/presubj to it.
+  * Add a note about libxine1-ffmpeg to /usr/share/bug/amarok/presubj. That's a
+    solution for "MP3 files not playing" problem.
+  * Make amarok suggest libxine1-ffmpeg.
+  * Remove Shoutcast service from the package description. It is no longer
+    available.
+  * Update DESCRIPTION section of amarok manual page. It was really obsolete.
+  * Switch to dpkg-source format 3.0 (quilt):
+    - do not use quilt dh addon in debian/rules;
+    - drop quilt from build-depends;
+    - drop quilt specific instructions from README.source;
+    - use original upstream .tar.bz2 tarball.
+  * Update patches:
+    - debian/disable_qtscriptbindings_check_fix - refresh;
+    - merge debian/mysqle_linkage_fix into debian/mysql_linkage_fix,
+      refresh;
+    - debian/mysqle_amarok_local_errmsg_feature - adapt to upstream changes;
+  * Update install files.
+
+ -- Modestas Vainius <modestas@vainius.eu>  Fri, 13 Nov 2009 22:01:41 +0200
+
+amarok (2:2.2.0-0ubuntu3) lucid; urgency=low
+
+  * Make amarok-common Replace amarok (<< 2:2.0.0) to make 1.4 -> 2.x upgrades
+    work properly (LP: #421389)
+  * Make amarok-common no longer replace/conflict mysql-server-data-5.1, as
+    the package no longer exists
+  * Bump amarok-util's replaces version on amarok to 0ubuntu3 (LP: #463426)
+
+ -- Jonathan Thomas <echidnaman@kubuntu.org>  Mon, 02 Nov 2009 11:02:56 -0500
+
+amarok (2:2.2.0-0ubuntu2) karmic; urgency=low
+
+  * Add 04_lyrics_script.diff from upstream, remove adverts in lyrics
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Thu, 08 Oct 2009 11:08:11 +0100
+
+amarok (2.2.0-1) unstable; urgency=low
+
+  * New upstream release.
+  * Refresh patches.
+
+ -- Modestas Vainius <modestas@vainius.eu>  Wed, 30 Sep 2009 22:26:09 +0300
+
+amarok (2:2.2.0-0ubuntu1) karmic; urgency=low
+
+  * New upstream release
+
+ -- Christian Mangold <neversfelde@ubuntu.com>  Mon, 28 Sep 2009 20:43:54 +0200
+
+amarok (2.2~rc1-1) unstable; urgency=medium
+
+  * New upstream development release (2.1.90):
+    - plays usertags from Last.fm "My tags" (Closes: #541338). Thanks to
+      Євгеній Мещеряков for the patch, merged upstream;
+    - fetches covers from Last.fm (Closes: #545384);
+    - lyrics fetching works again (Closes: #545466).
+  * Bump build depends to libtag1-dev 1.6-2 (supports ASF and MP4) and
+    libtag-extras-dev 1.0.1.
+  * Update install files: shoutcast service gone.
+  * Urgency medium, because previous release (2.1.1) has a splash screen of
+    questionable license.
+  * Update debian/copyright.
+  * Fix hyphen-used-as-minus-sign in amarok manual pages.
+
+ -- Modestas Vainius <modestas@vainius.eu>  Tue, 22 Sep 2009 13:35:53 +0300
+
+amarok (2:2.1.90-0ubuntu1) karmic; urgency=low
+
+  * New upstream release candidate
+  * Move libqt4-sql-sqlite from Suggests to Recommends (LP: #430105)
+  * Remove 'override_dh_strip: true' from debian/rules (LP: #433325)
+  * Update amarok.install and amarok-common.install
+  * Bump version of build-deps, libtag1-dev to 1.6 and libtag-extras-dev
+    to 1.0.1, new versions are required now
+
+ -- Christian Mangold <neversfelde@ubuntu.com>  Tue, 22 Sep 2009 00:10:44 +0200
+
+amarok (2.1.85-1) experimental; urgency=low
+
+  * New upstream development release (2.2 Beta 2).
+  * Refresh patches.
+
+ -- Modestas Vainius <modestas@vainius.eu>  Fri, 18 Sep 2009 00:36:57 +0300
+
+amarok (2:2.1.85-0ubuntu1) karmic; urgency=low
+
+  * New upstream beta release
+    - Fixes cover download (LP: #335578)
+  * Remove 05_fix_lyrics_script.diff, fixed upstream (LP: #409407) 
+  * Remove 04_gpod_compile.diff, fixed upstream
+ 
+ -- Christian Mangold <neversfelde@ubuntu.com>  Mon, 14 Sep 2009 22:26:19 +0200
+
+amarok (2:2.1.80-0ubuntu1) karmic; urgency=low
+
+  * New upstream beta release
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Thu, 03 Sep 2009 23:49:07 +0100
+
+amarok (2.1.80-1) experimental; urgency=low
+
+  * New upstream development release (2.2 Beta 1).
+  * Build depend on liblastfm-dev (>= 0.3).
+  * Bump Standards-Version to 3.8.3, no changes needed.
+  * Use kde dh sequence addon rather than debhelper/kde.mk:
+    - build depend on pkg-kde-tools 0.5;
+    - build depend on debhelper 7.3.16;
+    - adjust debian/rules;
+  * Resync patches:
+    - debian/disable_qtscriptbindings_check_fix - refresh;
+    - debian/mysqle_amarok_local_errmsg_feature - adapt to upstream changes;
+    - debian/mysqle_linkage_fix - adapt to upstream changes;
+    - debian/mysqle_look_for_libmysqld_pic - drop, merged upstream;
+    - general/armel_ftbfs_fix - drop, merged upstream;
+    - general/mp3tunes_portability_fix.diff - drop, merged upstream;
+  * Pass -DCMAKE_USE_RELATIVE_PATHS=ON to cmake again.
+  * Add debian/mysql_linkage_fix patch to linkage against mysql library on
+    Debian. OpenSSL is not needed.
+  * Update install files.
+  * Drop libamarok_service_liblastfm.so from lintian-overrides. It is no longer
+    shipped inside amarok source.
+  * Move amarok_afttagger to amarok-utils package. Add appropriate Replaces and
+    adjust Description accordingly.
+  * Add NEWS entry about database schema change in 2.2 (which complicates
+    downgrades to 2.1 a bit).
+
+ -- Modestas Vainius <modestas@vainius.eu>  Thu, 03 Sep 2009 11:02:45 +0300
+
+amarok (2:2.1.1orig-0ubuntu5) karmic; urgency=low
+
+  [ Christian Mangold ]
+  * Add patch 05_fix_lyrics_script.diff to make the lyrics 
+    script work again (LP: #409407) 
+
+  [ Michael Casadevall ]
+  * debian/control:
+    - Changed build-deps to depend on gtk version of libgpod so kpiti-plugins
+      and other packages depending on the gtk version can co-exist.
+
+ -- Michael Casadevall <mcasadevall@ubuntu.com>  Wed, 02 Sep 2009 16:38:06 -0400
+
+amarok (2:2.1.1orig-0ubuntu4) karmic; urgency=low
+
+  * Create mysqle directory manually (for some reason we get to dh_install
+    before dh_installdirs?)
+
+ -- Harald Sitter <apachelogger@ubuntu.com>  Wed, 26 Aug 2009 00:47:23 +0200
+
+amarok (2:2.1.1orig-0ubuntu3) karmic; urgency=low
+
+  * rebuild with latest pkg-kde-tools to make sure it gets installdocs
+    right
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Tue, 25 Aug 2009 17:06:59 +0100
+
+amarok (2:2.1.1orig-0ubuntu2) karmic; urgency=low
+
+  [ Jonathan Thomas ]
+  * Merge from Debian Unstable, remaining changes:
+    - Build-depend on cdbs
+    - Build-depend on libgpod-nogtk-dev | libgpod-dev
+    - Keep conflicts/replaces on amarok-kde4* packages
+    - Amarok replaces amarok-common (<< 2:2.1.1orig-0ubuntu2) 'til karmic+1
+    - amarok-common replaces mysql-server-data-5.1 until karmic+1
+    - Keep the following patches:
+      + kubuntu_03_restricted_install.diff
+      + kubuntu_04_gpod_compile.diff
+
+  [ Jonathan Riddell ]
+  * Build-dep on pkg-kde-tools 0.4.11ubuntu4 which has i18n support for
+    debhelper 7
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 24 Aug 2009 13:35:15 +0100
+
+amarok (2:2.1.1orig-0ubuntu1) karmic; urgency=low
+
+  * Redo tarball without MySQL (5.1 now in main => migrating to that)
+  * Drop all the MySQL-related stuff (build rules, copyright, deps...)
+    + Remove debian/patches-mysql
+    + Rename debian/patches-amarok to debian/patches
+    + remove source.lintian-overrides (only conained mysql stuff
+  * Use CDBS
+  * Amarok package now depends mysql-server-core-5.1
+
+ -- Harald Sitter <apachelogger@ubuntu.com>  Tue, 18 Aug 2009 11:02:19 +0200
+
+amarok (2.1.1-4) unstable; urgency=medium
+
+  * Add general/mp3tunes_portability_fix patch to fix FTBFS on alpha.
+  * Urgency medium: RC bug fix.
+
+ -- Modestas Vainius <modestas@vainius.eu>  Tue, 04 Aug 2009 10:16:59 +0300
+
+amarok (2.1.1-3) unstable; urgency=low
+
+  * Exclude usr/lib/kde4/* from dh_makeshlibs. This is a better fix for
+    unused-shlib-entry-in-control-file lintian warnings.
+  * Add ${misc:Depends} to Depends of all packages.
+  * Drop shlib-missing-in-control-file from amarok.lintian-overrides. No longer
+    needed.
+  * Actually ship debugging symbols in amarok-dbg.
+  * Install a bug-control file to all packages which:
+    - lists installed phonon backends;
+    - adds info about amarok and amarok-common package to each bug report.
+  * Prefer phonon-backend-xine to other phonon backends (Closes: #538767).
+  * Add a presubj to amarok package for users who hear no sound or amarok is
+    otherwise skipping songs (See: #538767).
+
+ -- Modestas Vainius <modestas@vainius.eu>  Mon, 27 Jul 2009 16:21:29 +0300
+
+amarok (2.1.1-2) unstable; urgency=low
+
+  * Make use of debhelper 7.3 cmake support:
+    - build depend on debhelper 7.3;
+    - build depend on pkg-kde-tools 0.4.10, use debhelper/kde.mk from there;
+    - drop custom debian/debhelper snippets;
+    - adjust debian/rules accordingly.
+  * Refresh patches.
+  * Use libmysqld-pic from MySQL 5.1.36-2 packages:
+    - replace libmysqlclient15-dev build depend with libmysqld-pic
+      (Closes: #538454);
+    - disable debian/mysqle_link_to_amarok_executable_feature.diff patch;
+    - enable debian/mysqle_linkage_fix.diff patch;
+    - add patch mysqle_look_for_libmysqld_pic.diff patch which makes amarok
+      find libmysqld_pic from the libmysqld-pic package.
+  * Add general/armel_ftbfs_fix.diff patch which fixes building failures on
+    armel. Thanks to Michael Casadevall.
+  * Merge missing debian/changelog entries from Amarok 1.4.9 and 1.4.10
+    package revisions.
+  * Remove old cruft (about_version patch related) from debian/rules.
+  * Bump Standards-Version to 3.8.2. No changes needed.
+  * Do not run upstream test suite.
+  * Upload to unstable following MySQLe 5.1 upload!
+
+ -- Modestas Vainius <modestas@vainius.eu>  Sun, 26 Jul 2009 15:08:21 +0300
+
+amarok (2:2.1.1mysql5.1.30-0ubuntu1) karmic; urgency=low
+
+  * New upstream release
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Thu, 18 Jun 2009 10:39:40 +0100
+
+amarok (2.1.1-1) experimental; urgency=low
+
+  * New upstream release.
+  * Update amarok-common.install.
+
+ -- Modestas Vainius <modestas@vainius.eu>  Tue, 16 Jun 2009 20:27:22 +0300
+
+amarok (2:2.1mysql5.1.30-0ubuntu3) karmic; urgency=low
+
+  * Make sure debug symbosl are stripped properly (LP: #368470)
+
+ -- Jonathan Thomas <echidnaman@kubuntu.org>  Wed, 03 Jun 2009 11:55:01 -0400
+
+amarok (2.1-1) experimental; urgency=low
+
+  * New upstream release.
+  * Remove duplicate symbols from libmysqld.a before linking
+    (improve patch debian/mysqle_link_to_amarok_executable_feature).
+  * Fix typo in amarok-utils description (thanks to Frederik Schwarzer).
+  * Disable debian/bug-presubj (notice about upstream bugs).
+  * Disable patch debian/aboutdata_add_debian_version_feature. Breaks upstream
+    BTS version tracking.
+
+ -- Modestas Vainius <modestas@vainius.eu>  Tue, 02 Jun 2009 22:24:27 +0300
+
+amarok (2:2.1mysql5.1.30-0ubuntu2) karmic; urgency=low
+
+  * Debian/control:
+    - amarok depends on libqtscript4-qtbindings
+
+ -- Anthony Mercatante <tonio@ubuntu.com>  Tue, 02 Jun 2009 16:26:41 +0200
+
+amarok (2:2.1mysql5.1.30-0ubuntu1) karmic; urgency=low
+
+  * New upstream release
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 01 Jun 2009 12:47:12 +0000
+
+amarok (2:2.0.96mysql5.1.30-0ubuntu1) karmic; urgency=low
+
+  * New upstream beta release
+  * Add build-dep on taglib-extras
+  * Add build-dep on qt script
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Wed, 20 May 2009 15:59:09 +0100
+
+amarok (2.0.96-2) experimental; urgency=low
+
+  * Do not apply debian/mysqle_linkage_fix patch, rebase
+    debian/mysqle_link_to_amarok_executable_feature on top of upstream.
+  * Update debian/copyright.
+  * Add amarok-utils package.
+  * Change main section to 'sound' and put amarok-utils to utils section.
+  * Update amarok package description.
+
+ -- Modestas Vainius <modestas@vainius.eu>  Mon, 11 May 2009 22:40:53 +0300
+
+amarok (2.0.96-1) experimental; urgency=low
+
+  * New upstream release (2.1 Beta 2) (Closes: #528082):
+    - no longer contains QtScript Bindings, FTBFS is not applicable
+      (Closes: #527817).
+  * Build depend on libtag-extras-dev.
+  * Bump Standards-Version to 3.8.1. No changes needed.
+  * Update build scripts:
+    - use simplier debhelper/cmake.mk;
+    - use dh --with quilt for patching (bump quilt build depend to 0.4.6-7~).
+  * Add Vcs-* fields.
+  * Use TopGit for patch management:
+    - update debian/README.source accordingly;
+    - update patches from TopGit branches, they were renamed.
+  * Depend on QtScript bindings:
+    - add debian/disable_qtscriptbindings_check_fix patch to disable Qt Script
+      bindings cmake check at build time;
+    - make amarok depend on the following QtScript bindings packages:
+      - libqtscript4-core
+      - libqtscript4-gui
+      - libqtscript4-network
+      - libqtscript4-xml
+      - libqtscript4-sql
+      - libqtscript4-uitools
+  * Update install files.
+  * Bump debhelper build depend to 7.2.3~ due to dh_bugfiles.
+  * Change amarok-dbg section to debug.
+
+ -- Modestas Vainius <modestas@vainius.eu>  Mon, 11 May 2009 14:38:38 +0300
+
+amarok (2:2.0.2mysql5.1.30-0ubuntu3) jaunty; urgency=low
+
+  * Add kubuntu_07_lastfm_scrobble.diff from upstream to fix Last.fm
+    scrobbling (LP: #355308)
+
+ -- Jonathan Thomas <echidnaman@kubuntu.org>  Wed, 15 Apr 2009 15:20:56 -0400
+
+amarok (2:2.0.2mysql5.1.30-0ubuntu2) jaunty; urgency=low
+
+  * Link libmysqld to amarok executable (patch
+    03_mysqle_link_to_amarok_executable.diff from Debian) Fixes crashes on 
+    startup for PowerPC (LP: #319331)
+  * Disable 02_mysqle_fix_linkage.diff, kinda depreciated by the above
+
+ -- Jonathan Thomas <echidnaman@kubuntu.org>  Wed, 18 Mar 2009 14:18:29 -0400
+
+amarok (2.0.60+svn935422-2) experimental; urgency=low
+
+  * Link libmysqld to amarok executable (patch
+    03_mysqle_link_to_amarok_executable.diff). It is a bit hackish solution but
+    the win is that -fPIC is not needed for libmysqld.a anymore
+    (Closes: #501495). Thanks to Sune Vuorela for the excelent idea.
+  * Disable 02_mysqle_fix_linkage.diff. Sort of deprecated by patch 03.
+  * Build depend on libwrap0-dev. It is needed to link whole libmysqld archive.
+  * PostgresSQL -> PostgreSQL in README.Debian.
+  * Add more lintian overrides.
+  * Drop | libgpod-dev (>= 0.7.0) from build depends. It seems to confuse
+    experimental buildds.
+
+ -- Modestas Vainius <modestas@vainius.eu>  Fri, 06 Mar 2009 02:12:08 +0200
+
+amarok (2.0.60+svn935422-1) experimental; urgency=low
+
+  * New upstream development snapshot (amarok 2.1):
+    - Last Changed Author: mitchell
+    - Last Changed Rev: 935422
+    - Last Changed Date: 2009-03-05 05:33:46 +0200
+    - Translations as of Wed, 04 Mar 2009 23:53:09 +0200 are included.
+  * Fix test in the override_dh_install target, makes the package -B
+    buildable.
+  * Adapt patch 01_aboutdata_add_debian_version.diff to upstream changes.
+
+ -- Modestas Vainius <modestas@vainius.eu>  Thu, 05 Mar 2009 18:22:23 +0200
+
+amarok (2:2.0.2mysql5.1.30-0ubuntu1) jaunty; urgency=low
+
+  [ Steve Stalcup ]
+  * New upstream release
+  * Removed KUBUNTU-DEBIAN-DIFFERENCES
+  * Rebuild with new libgpod (LP: #337862)
+
+  [ Harald Sitter ]
+  * Use lzma for amarok and mysql tarball to reduce orig tarball size
+  * Add lzma as build dependency
+  * Change tarball name expressions in rules accordingly
+
+ -- Harald Sitter <apachelogger@ubuntu.com>  Thu, 05 Mar 2009 18:52:07 +0100
+
+amarok (2.0.60+svn934288-1) experimental; urgency=low
+
+  * New upstream development snapshot (amarok 2.1 trunk):
+    - Last Changed Author: dmeltzer
+    - Last Changed Rev: 934288
+    - Last Changed Date: 2009-03-02 19:56:56 +0200
+    - Translations as of Sun, 01 Mar 2009 18:43:56 +0200 are included.
+    - Fixes saving of "lastplay" and "equals" bias matches (Closes: #517026).
+    - This snapshot is supposed to handle wikipedia properly (Closes: #512847).
+  * Reenable presubj and tweak working a bit.
+  * Adapt 02_mysqle_fix_linkage.diff patch to upstream changes.
+  * Bump KDE build dependences to 4.2.0 (as well as strigi to 0.6.3 and soprano to
+    2.1.67).
+  * Build depend on libqca2-dev (needed by ampache service).
+  * Remove references to libvisual (build-depends, amarok suggests,
+    description).
+  * Remove a notice about development stage software from the description.
+  * Bump libgpod build depends to 0.7.0.
+  * Add prune-tarball rule to remove non-free src/mac stuff.
+  * Update install files and debian/not-installed.
+  * Changes to custom debhelper scripts:
+    - adapt debian/debhelper/kde4.mk to use new dh_overrides system;
+    - remove custom debian/debhelper/dh, no longer necessary;
+    - remove dh_auto_test from the kde4 sequence;
+    - add dh_bugfiles to the kde4 sequence;
+    - build depend on debhelper 7.0.50 to get dh_overrides support;
+    - get rid of Dh_Lib hack, no longer necessary;
+    - remaining hacks - cmake support for dh_auto_* tools via "plugins";
+    - move dh_strip autodbg package code from kde4 sequence to kde4 makefile
+      snippet.
+  * Adapt debian/rules to dh_overrides system. Much cleaner now.
+  * Conflict with amarok 1 engines. Just a safety measure (Closes: #513793).
+  * Add Debian package version to aboutData (patch
+    01_aboutdata_add_debian_version.diff). Pass DEBIAN_PACKAGE_VERSION to
+    cmake.
+  * Move mysql-server-5.1 to Build-Depends-Indep. It is needed only because
+    of errmsg.sys which is shipped in the arch:all amarok-common.
+
+ -- Modestas Vainius <modestas@vainius.eu>  Mon, 02 Mar 2009 23:20:29 +0200
+
+amarok (2:2.0.1.1mysql5.1.30-0ubuntu4) jaunty; urgency=low
+
+  * Add missing cmake test to kubuntu_04_libgpod_0.7.diff
+  * Add kubuntu_06_qtscript45.diff to compile with Qt 4.5
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 23 Feb 2009 11:56:23 +0000
+
+amarok (2:2.0.1.1mysql5.1.30-0ubuntu3) jaunty; urgency=low
+
+  * Add kubuntu_05_wikipaedia.diff from upstream, fixes Wikipaedia applet
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Tue, 17 Feb 2009 10:21:38 +0000
+
+amarok (2:2.0.1.1mysql5.1.30-0ubuntu2) jaunty; urgency=low
+
+  * Add patch kubuntu_03_restricted_install.diff to call update-notifier-kde
+    and prompt for restricted codecs install
+  * Add kubuntu_04_libgpod_0.7.diff from upstream, compile with libgpod 0.7
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Thu, 12 Feb 2009 19:14:19 +0000
+
+amarok (2:2.0.1.1mysql5.1.30-0ubuntu1) jaunty; urgency=low
+
+  * New package with mysql sources included, as discussed with security team
+  * debian/rules file is now based on the one from mysql-dfsg-5.1
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Fri, 06 Feb 2009 08:34:35 +0000
+
+amarok (2:2.0.1.1-0ubuntu5) jaunty; urgency=low
+
+  * Depend on new package mysql-server-data-5.1,
+    do not need mysql-server-5.1 now
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Tue, 27 Jan 2009 00:14:47 +0000
+
+amarok (2:2.0.1.1-0ubuntu4) jaunty; urgency=low
+
+  [ Harald Sitter ]
+  * Removed build deps:
+    - libvisual-0.4-dev (no support in Amarok 2 + unmaintained upstream)
+    - libgtk2.0-dev (we build against libgpod-nogtk to save CD space)
+  * Removed deps:
+    - ruby (scripting is provided via QtScript)
+    - kdebase-workspace-data (not necessary with plasma being in kdelibs)
+  * Removed suggests:
+    - libvisual-0.4-plugins (no support in Amarok 2 + unmaintained upstream)
+  * Removed recommends:
+    - kdelibs5-dbg from amarok-dbg (use dep, since it is required with the
+      current build system)
+  * Add Replaces/Conflicts on amarok-kde4(-dbg) to all packages
+  * Drop note about libvisual from Description
+  * Add ${misc:Depends} for all packages to make lintian happy
+  * Import packaging into Bzr and add Vcs-Browser/Vcs-Bzr fields
+  * Add final newline to debian/rules
+  * Update debian/watch for stable
+  * Include debian/icons and debian/amarok.menu from Debian
+  * Sync build-depends with current Debian package to reduce diff
+
+  [ Steve Stalcup ]
+  * Debian/control:
+    - Drop build dependancy on mysql-server-5.1 (not required for build)
+    - Drop build dependancy on libmysqlclient-dev (moved to mysql 5.0)
+    - Added build dependancy on libmysqlclient16-dev (provided by mysql 5.1)
+    - Bump versions on build-deps
+  * Correct paths in amarok.install for .xpm icons
+  * Updated KUBUNTU-DEBIAND-DIFFERENCES
+  * Closes amarok associated bug (LP: #316957)
+
+ -- Steve Stalcup <vorian@ubuntu.com>  Wed, 14 Jan 2009 18:42:40 -0500
+
+amarok (2:2.0.1.1-0ubuntu3) jaunty; urgency=low
+
+  * debian/contol, added following Depends for amarok:
+    - mysql-server-5.1 (>= 5.1.30-2ubuntu1)
+    - kdebase-workspace-data (>=4.1.85)
+    - ruby
+  * Updated KUBUNTU-DEBIAN-DIFFERENCES
+
+ -- Steve Stalcup <vorian@ubuntu.com>  Mon, 12 Jan 2009 11:22:19 -0500
+
+amarok (2:2.0.1.1-0ubuntu2) jaunty; urgency=low
+
+  * Removed libmp4v2-dev as a build-dep
+
+ -- Steve Stalcup <vorian@ubuntu.com>  Sun, 11 Jan 2009 23:54:52 -0500
+
+amarok (2:2.0.1.1-0ubuntu1) jaunty; urgency=low
+
+  * New Upstream Release
+  * Drop 05_mysqle_amarok_local_errmsg patch, fixed upstream
+  * Updat amarok-common.install file
+  * Merge from Debian Unstable, remaining changes:
+    - Change rules for kubuntu cdbs-kde4.mk
+      + dropped any build internal buildsystems
+        * debian/debhelper:
+        * debian/Debian/Buildsystems
+        * debian/Debian/Sequence
+        * debian/Debian/
+    - Drop debian/icons
+    - Drop NEWS file
+    - Drop bug-presubj.disabled
+    - Remove 'debian/icons/*' from amarok.install
+    - Change amarok.install (see KUBUNTU-DEBIAN-DIFFERENCES)
+  * Add libmp4v2-dev to build-deps
+  * Bump build-dep versions
+  * Added Kubuntu Developers as maintainers
+  * Added git-orig-source rule to rules
+  * Added KUBUNTU-DEBIAN-DIFFERENCES
+
+ -- Steve Stalcup <vorian@ubuntu.com>  Sat, 10 Jan 2009 11:35:03 -0500
+
+amarok (2.0.1.1-1) experimental; urgency=low
+
+  * New upstream release.
+  * Refresh 05 patch.
+  * Update install files.
+  * Enchance 02_mysqle_fix_linkage.diff: link mysqle against libdl.
+
+ -- Modestas Vainius <modestas@vainius.eu>  Sat, 10 Jan 2009 12:51:54 +0200
+
+amarok (2.0-1) experimental; urgency=low
+
+  * New MAJOR upstream release.
+  * Disable bug-presubj.
+  * Remove 01_r887834_dynamic_playlist_exhaust_fix.diff, stolen from upstream.
+  * Refresh 05_mysqle_amarok_local_errmsg.diff patch.
+
+ -- Modestas Vainius <modestas@vainius.eu>  Wed, 10 Dec 2008 01:32:45 +0200
+
+amarok (1.98-1) experimental; urgency=low
+
+  * New upstream development release (2.0 RC1).
+  * Drop amarok dependency on libplasma2. It is not needed.
+  * No longer build depends on sqlite.
+  * Suggest Qt4 SQLite, MySQL and PostgresSQL plugins which allow
+    to import collections from Amarok 1.4. Document that in README.Debian.
+  * Remove note about scripts from README.Debian.
+  * Refresh 05_mysqle_amarok_local_errmsg.diff patch.
+  * Add 01_r887834_dynamic_playlist_exhaust_fix.diff patch which should solve
+    the problem with dynamic playlist running out of tracks after some time.
+  * Update install files.
+
+ -- Modestas Vainius <modestas@vainius.eu>  Sun, 23 Nov 2008 10:53:51 +0200
+
+amarok (1.94-1) experimental; urgency=low
+
+  * New upstream development release (2.0 Beta 3).
+  * Rewrite debian/debhelper/* and debian/Debian/*
+    - Get rid of the Debian symlink hack. Use PERLLIB environment variable
+      instead to allow dh to find custom Debhelper modules.
+    - Make it thread-safe by dropping double-collon rules.
+    - Change the way dh_auto_* handles buildsystems.
+    - Rewrite almost all custom Debhelper scripts.
+    - Pass -DCMAKE_USE_RELATIVE_PATHS=ON when cmake >= 2.6.2-1 is used.
+  * Build depend on cmake 2.6.2 or higher.
+  * Update install files.
+  * Refresh debian/patches.
+  * Make quilt build dependency unversioned again. Tweak README.source a bit.
+  * Tweak debian/copyright a bit.
+  * Build depend on pkg-kde-tools >= 0.2. Use variables.mk from there and
+    enable linking with --as-needed.
+  * Add lintian override for usr/lib/libamarok_service_liblastfm.so error.
+
+ -- Modestas Vainius <modestas@vainius.eu>  Sat, 01 Nov 2008 21:41:19 +0200
+
+amarok (1.92.2-1) experimental; urgency=low
+
+  * New upstream development release (1.92.2 aka REAL 2.0 Beta2).
+  * Rename and modify patches:
+    - 02_sqlcollection_no_openssl_linkage.diff to 02_mysqle_fix_linkage.diff.
+      Additionally link sqlcollection (MySQLe) against pthread.
+  * Drop patches, merged upstream:
+    - 01_mp3tunes_gcrypt_fixup.diff
+    - 03_r865140_r865531_mysqle_init_fixes.diff
+    - 04_mysqle_skip_grant_tables.diff
+  * Refresh patches:
+    - 05_mysqle_amarok_local_errmsg.diff
+  * Update amarok-common.install:
+    - importer script - removed;
+    - librivox_service script - new files added.
+
+ -- Modestas Vainius <modestas@vainius.eu>  Sun, 05 Oct 2008 10:15:09 +0300
+
+amarok (1.92-1) experimental; urgency=low
+
+  * New upstream development release (1.92 aka 2.0 Beta2):
+  * Drop 01_mp3tunes_support_gcrypt.diff. Merged upstream.
+    - Add 01_mp3tunes_gcrypt_fixup.diff - upstream merged incomplete patch.
+      This small fix is still needed to make amarok mp3tunes build against
+      libgcrypt.
+  * Drop dependency on ruby from amarok-common and from build depends.
+  * Build-depend on kdemultimedia-dev (>= 4.1.1) as it has dependencies
+    cleaned up now. Bump kdelibs5-dev and libsoprano-dev build depend versions
+    to match this one.
+  * Update install files.
+  * Install translations to amarok-common.
+  * Update debian/not-installed.
+  * Strip debian/tmp from install files. No longer necessary as of debhelper
+    compat level 7.
+  * debian/rules: now other scripts need permission fixes (lyrc and lyricwiki).
+  * Replace libmysqlclient15-dev build dependency with libmysqlclient-dev
+    (>= 5.1.26c) from experimental. libmysqld.a (MySQL Embedded) in the old
+    package cannot be linked with shared libraries (Amarok sqlcollection) and
+    as a result build fails.
+  * Add patch to drop useless sqlcollection plugin linking with openssl stuff
+    (crypto, ssl) (02_sqlcollection_no_openssl_linkage.diff).
+  * Add 03_r865140_r865531_mysqle_init_fixes.diff patch from amarok trunk
+    which is supposed to fix Amarok crash on startup related to MySQLe and
+    Innodb. However, MySQLe as of 5.1.26rc-1 does not want to use MyISAM even
+    when explicitly told so.
+  * Add 04_mysqle_skip_grant_tables.diff which disables MySQLe ACL checking
+    (--skip-grant-tables option) when MySQLe is built with
+    --with-embedded-privilege-control option. ACLs are useless for Amarok.
+  * It appears that MySQLe needs errmsg.sys to run. This file is supplied by
+    the mysql-server-5.1 package however it is overkill to depend on it. Hence
+    make the following changes:
+    - Build-depend on mysql-server-5.1. It will be the source of English
+      errmsg.sys.
+    - Copy mysql-server-5.1 English errmsg.sys to <amarok data dir>/mysqle.
+      Install it to the amarok-common package.
+    - Patch (05_mysqle_amarok_local_errmsg.diff) Amarok MySQLe to search for 
+      the errmsg.sys in the <amarok data dir>/mysqle (--language option).
+  * Remove obsolete patches from debian/patches (they were disabled in 1.90-1):
+    - 10_queuemedia.patch
+    - 15_temptables_more_indices.diff
+  * Add debian/NEWS entry about MySQLe.
+
+ -- Modestas Vainius <modestas@vainius.eu>  Sun, 28 Sep 2008 12:10:02 +0300
+
+amarok (1.90-1) experimental; urgency=low
+
+  * New upstream development release (2.0 Beta 1, Nerrivik) (Closes: #481834):
+    - Improved & rewriten Last.fm support (Closes: #367910, #390412, #421810),
+      (Closes: #439795). If closed bugs still apply, please reopen.
+    - There is no counter anymore (Closes: #406937).
+    - "Manage Devices and Plugins" popup no longer exists (Closes: #420057).
+    - "setBpm" DBus call is not available. The bug is no longer applicable
+      (Closes: #458210).
+    - Playlist code was rewritten (Closes: #416783).
+    - Wikipedia information is reloaded when another song is played
+      (Closes: #453151).
+
+  * Remove patches:
+    - 01, 02, 03, 04, 05, 06, 97 - no longer applicable as amarok 2 uses cmake
+      instead of autotools.
+    - 11_bug403340_cancel_rename_when_deleting_items.diff - playlist code was
+      rewritten.
+    - 12_devicemanager_dcopcall_no_timeout.diff - no longer applicable as DCOP
+      has been replaced by DBus.
+    - 13_lastfm_crash_434835.diff - Last.fm support was completely rewritten.
+    - 14_ruby_libs_not_scripts.diff - no longer applicable.
+  * Disable patches (needs evaluation and/or porting if still applicable):
+    - 10_queuemedia.patch
+    - 15_temptables_more_indices.diff
+  * Switch away from cdbs to debhelper v7:
+    - Port important stuff from pkg-kde KDE4 cdbs/kde.mk to my dh/kde.mk
+    - Appropriate changes to debian/rules.
+  * Add 01_mp3tunes_support_gcrypt.diff patch which adds support for linking
+    against Libgcrypt instead of OpenSSL (mp3tunes Internet Service).
+  * Bump Standards-Version to 3.8.0:
+    - add README.source and build-depend on quilt (>= 0.46-4.1) to ensure
+      presence of /usr/share/doc/quilt/README.source in the quilt package.
+  * Drop Vcs fields for now. amarok 2 packaging is not under any Vcs yet.
+  * Drop amarok-engine* packages amarok 2 Beta 1 supports only one engine
+    (Phonon) currently. Also:
+    - Drop individual engines from amarok Depends.
+    - Drop Conflicts with amarok-engine. No longer applicable.
+    - Do not suggest non-existant amarok-engines metapackage.
+  * Drop amarok-konqsidebar package as it is not present in this release. Also
+    drop it from amarok Recommends.
+  * Drop moodbar from amarok Suggests. Not supported in this release.
+  * Update amarok and amarok-common install files.
+  * Use (=) relationship for amarok depends on amarok-common.
+  * Remove Last.fm, Ruby and KDE socket notes from README.Debian. They are no
+    longer applicable.
+  * Update watch file to track unstable amarok 2 releases (until amarok 2
+    final is released).
+  * Make amarok-common depend on libplasma2 for the animator and a few plasma
+    servicetypes (in kdebase-workspace-data).
+  * Cleanup amarok-common suggests too. I do not see any python scripts being
+    installed.
+  * Update amarok.1 manpage, add amarokmp3tunesharmonydaemon.1 manpage.
+  * Update lintian-overrides.
+  * Add presubj to discourage users from reporting upstream bugs to Debian BTS
+    until Amarok 2 is not stable.
+  * Build depend on libmtp-dev (>= 0.3.0). Newer library version is necessary.
+  * Build depend on libgtk2.0-dev to get Gdk 2.0 (iPod covers).
+  * Update debian/copyright.
+
+ -- Modestas Vainius <modestas@vainius.eu>  Fri, 22 Aug 2008 01:21:37 +0300
+
+amarok (1.4.10-3) unstable; urgency=low
+
+  * Rebuild for libmtp8 0.3.6. Steal the patch (21_fix_libmtp-0.3.0-API.diff)
+    from ubuntu (Closes: #516557).
+  * Bump libmtp-dev build depend to >= 0.3.0.
+  * Remove amarok-konqsidebar package to drop kdebase-dev build depend.
+  * Fix Wikipedia tab (patch 22_fix_wikipedia_tab.diff) (Closes: #512847).
+
+ -- Modestas Vainius <modestas@vainius.eu>  Mon, 02 Mar 2009 01:16:27 +0200
+
+amarok (1.4.10-2) unstable; urgency=high
+
+  * Add 20_security_audible_tags.diff patch to fix integer overflow while
+    reading audible aa file tags.
+  * Urgengy high due to security fix.
+
+ -- Modestas Vainius <modestas@vainius.eu>  Sat, 10 Jan 2009 13:56:55 +0200
+
+amarok (2:1.4.10-0ubuntu3) intrepid; urgency=low
+
+  * Add kubuntu_12_eject_command.diff, change eject command to
+    umount, we no longer have kdeeject
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 13 Oct 2008 22:16:22 +0100
+
+amarok (2:1.4.10-0ubuntu2) intrepid; urgency=low
+
+  * Update install-mp3 to use install-package
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 08 Sep 2008 14:30:40 +0100
+
+amarok (1.4.10-1) unstable; urgency=high
+
+  * New upstream release:
+    - [Secunia SA31418] Fixes insecure temporary file creation
+      (Closes: #494765).
+  * Urgency high due to security fix.
+
+ -- Modestas Vainius <modestas@vainius.eu>  Thu, 14 Aug 2008 21:35:56 +0300
+
+amarok (2:1.4.10-0ubuntu1) intrepid; urgency=low
+
+  * New upstream release
+  * Add kubuntu_11_fix_libmtp-0.3.0-API.diff
+
+ -- Harald Sitter <apachelogger@ubuntu.com>  Thu, 14 Aug 2008 18:04:13 +0200
+
+amarok (1.4.9.1-3) unstable; urgency=low
+
+  * Make amarok depend strictly on the same source version of amarok-common (=)
+  * Add support for hotkeys under GNOME (Closes: #460113):
+    - Add 16_gnome_multimedia_keys.diff patch (patch from Ubuntu, thanks to 
+      Chris Brown and James Westby). Adds gnome_media_keys script.
+    - Make amarok-common suggest python-dbus and libdbus-glib.
+    - Add entry to README.Debian that python-dbus and libdbus-glib are needed
+      to get the script working.
+    - Add and patch Makefile.am to enable installation of the script.
+  * Properly support Xiph mime types (patch from Ubuntu, thanks to Daniel
+    Hahler and James Westby) (Closes: #488699).
+  * Improve audiocd support from konqueror menu (Closes: #488680). Based on
+    patch from Ubuntu (thanks to Anthony Mercatante and James Westby) with
+    the following changes:
+    - No distro branding.
+    - Rename and install the 'play_audiocd' script to /usr/share/apps/amarok.
+    - Remove bashisms from the play_audiocd script: /bin/sh compatibility.
+    - Enhance play_audiocd script. Some assumptions there were not valid.
+    - Install the script to the amarok-common package.
+    - Patch amarok/src/amarok_play_audiocd.desktop instead of providing own
+      version (19_amarok_play_audiocd.desktop.diff).
+  * Add last.fm "Recommended Radio". Patch from Ubuntu (Closes: #488698).
+    Thanks to Daniel Hahler and James Westby.
+    - Extend the patch. Add "Recommend Radio" to the Playlist menu too.
+  * Remove KDE*3* from the amarok package description. When I added it, I
+    planned the KDE 4 version too (Closes: #488692).
+  * Do not use quilt options (-p0) (Closes: #484942).
+
+ -- Modestas Vainius <modestas@vainius.eu>  Sat, 26 Jul 2008 16:06:43 +0300
+
+amarok (2:1.4.9.1-2ubuntu3) intrepid; urgency=low
+
+  * Add moodbar to the feature list
+  * Remove the amarok-engine virtual package, see debian version 1.4.8-2 for
+    reasoning
+  * amarok-common conflicts with amarok packages older than -2ubuntu1, but
+    doesn't replace them (LP: #244628)
+
+ -- Harald Sitter <apachelogger@ubuntu.com>  Mon, 30 Jun 2008 19:19:04 +0200
+
+amarok (2:1.4.9.1-2ubuntu2) intrepid; urgency=low
+
+  * Add manpages - unbreak build
+
+ -- Harald Sitter <apachelogger@ubuntu.com>  Fri, 27 Jun 2008 15:34:42 +0200
+
+amarok (2:1.4.9.1-2ubuntu1) intrepid; urgency=low
+
+  * Merge with Debian, remaining changes in debian/KUBUNTU-DEBIAN-DIFFERENCES
+
+ -- Harald Sitter <apachelogger@ubuntu.com>  Wed, 25 Jun 2008 21:16:38 +0200
+
+amarok (1.4.9.1-2) unstable; urgency=medium
+
+  * Add 15_temptables_more_indices.diff patch which creates more indices for
+    some temporary tables that are used extensively while building collection
+    database. Apparently, SQLite 3.5.x is slower than 3.4.x when doing
+    matches on unindexed temporary table fields. This should solve (or improve
+    situation significantly) major performance problems with SQLite 3.5.x
+    (Closes: #479068). Urgency medium because this problem affects many 
+    lenny and sid Amarok users having rather large (15k+ songs) collections.
+
+ -- Modestas Vainius <modestas@vainius.eu>  Sun, 11 May 2008 04:07:01 +0300
+
+amarok (1.4.9.1-1) unstable; urgency=low
+
+  * New upstream bugfix release:
+    - The last.fm dialog did not always properly disable options when the
+      username was not entered.
+    - Fix Amazon Cover fetching by using their new web service api.
+      (Closes: #474186)
+    - Don't insert items into Dynamic Mode that don't exist.
+    - If unavailable tracks are in the Playlist and random mode is on, don't
+    - stop those tracks if selected; continue with available tracks.
+  * Repackage original tarball as orig.tar.gz instead of doing tarball-in-orig
+    tarball thing. The previous way made patch testing and debugging more
+    painful unnecessarily.
+  * Resynchronize patches:
+    - 11_bug403340_cancel_rename_when_deleting_items.diff - fix offsets.
+    - 97_automake_cleanup.diff - adopt to upstream changes, fix offsets.
+  * Improve debian/rules stamp-automake and clean targets a bit not to rm
+    automake generated files uselessly (if they were not regenerated)
+
+ -- Modestas Vainius <modestas@vainius.eu>  Fri, 11 Apr 2008 10:12:31 +0300
+
+amarok (1.4.8-2) unstable; urgency=low
+
+  * Remove Adeodato Simó from Uploaders by his request. Thank you Adeodato for
+    all your hard work!
+  * Remove amarok-gstreamer.install because there is no gstreamer engine
+    anymore.
+  * Remove overrides/amarok-arts. arts engine is no longer available.
+  * Drop internal cdbs/kde.mk in favour of the one shipped with cdbs. Merge
+    missing functionality (cvs-make/automake) into debian/rules.
+  * Auto-guess automake /usr/share directory.
+  * Rework interdependences among amarok and its engines' packages:
+    - Drop amarok-engine virtual package. Amarok and its engines ABI are not
+      even compatible between Amarok point releases so virtual package, which,
+      unfortunately, is versionless by definition, is not practical here.
+    - Rename engine packages to amarok-engine-$engine. Make them conflict
+      and replace previous amarok-$engine packages. Also make amarok conflict
+      with amarok-engine virtual package. All these changes will ensure that
+      partial upgrades from etch are not allowed (Closes: #432219).
+    - Make amarok depend on any of its engines of the same binary version
+      via alternate dependences. Default engine is amarok-engine-xine. Edit
+      amarok-engine-xine description accordingly.
+    - Make all amarok engines recommend amarok strictly of the same binary
+      version. Recommends instead of Depends here breaks circular dependency
+      (Closes: #368485).
+    - Downgrade amarok-engines to amarok Suggests.
+    - Convert amarok-engines package to arch:all because it's a metapackage.
+      Edit amarok-engines description because it's no longer going to be
+      installed by default.
+    - Add amarok-yauap to amarok-engines Suggests.
+  * New binary packages:
+    - amarok-common - arch:all package for architecture independent files
+      split from amarok. It recommends amarok (>= ${source:Version}) to
+      avoid circular dependency as in case of stricter "Depends" relationship.
+    - amarok-konqsidebar - split konqsidebar into its own binary package. The
+      reason for this is that it's incompatible with konqueror (>= 4:4.0.0)
+      and needs to _conflict_ with it (due to *.desktop files). Add
+      amarok-konqsidebar to amarok Recommends and amarok to amarok-konqsidebar
+      Depends.
+    - amarok-dbg - package with debugging symbols (Closes: #368840).
+    - amarok-engine-yauap - Yauap Commandline Audio Player engine
+      (Closes: #445371):
+      * Add libdbus-qt-1-dev to Build-Depends
+      * Pass --with-yauap to configure
+      * Add amarok-yauap.install
+      * Depend on yauap.
+  * Add "Homepage" field to debian/control source section, remove homepage
+    reference from amarok binary package description.
+  * Disable /usr/share/doc/amarok-* symlinks in debian/rules. They just
+    complicate packaging unnecessarily and make lintian unhappy.
+  * Ship only README from upstream source in /usr/share/doc/amarok.
+  * debian/README.Debian: remove a note about installing ruby, because it's
+    a dependency and gets installed anyway.
+  * New patches:
+    - 01_libtool_update.diff - use ltmain.sh and libtool.m4.in from Debian
+      libtool. This patch is used instead of previous `cp` in debian/rules,
+      because the patch 02_ below depends on it.
+    - 02_admin_cleanup.diff - admin/* cleanup patch.
+    - 97_automake_cleanup.diff - automake cleanup patch to get rid of excess
+      dependencies and shut dpkg-shlibdeps up. Superseeds previous
+      03_no_libadd_in_convenience_libs.diff patch.
+    - 11_bug403340_cancel_rename_when_deleting_items.diff - cancel a pending
+      'rename' request for the playlist item that is about to be deleted.
+       The patch solves a popular crash. (Closes: #403340).
+    - 12_devicemanager_dcopcall_no_timeout.diff - do not use timeout for dcop
+      calls. It's very unsafe because it might break further dcop calls such
+      as the one in the debian bug #432752 (Closes: #432752).
+    - 13_lastfm_crash_434835.diff - resolve lastfm crash which could be
+      triggered by switching away from lastfm track while it was still
+      handshaking or buffering (Closes: #434835). Thanks to Raphael for the
+      excelent instructions how to reproduce the crash.
+    - 14_ruby_libs_not_scripts.diff - remove #! stanzas from ruby library
+      files.
+  * Prepend sequence number to the filenames of existing debian/patches/*.
+    Edit debian/patches/series accordingly.
+  * Move Depends/Recommends on ruby, python & friends from amarok to
+    amarok-common since they scripts have been moved here.
+  * Add moodbar to amarok Suggests (Closes: #421420). Tweak amarok package
+    description accordingly.
+  * Add DM-Upload-Allowed: yes to debian/control source section.
+  * s/XS-Vcs/Vcs/ in debian/control.
+  * Drop DEB_DH_SHLIBDEPS_ARGS_amarok from debian/rules. No longer needed with
+    recent dpkg-shlibdeps.
+  * Build-Depend on debhelper (>= 5.0.0)
+  * Add executable permissions for some amarok scripts to make lintian happy.
+  * s/.NF/.nf/ in debian/amarok.1
+  * Drop DEB_INSTALL_DIRS_amarok from debian/rules. No longer needed.
+  * Use more accurate method to exclude (-X) amarok engines from being handled
+    by dh_makeshlibs instead of just DEB_DH_MAKESHLIBS_ARGS_ALL = -n.
+  * Do not amarok.install /usr/lib/libamarok.so and /usr/lib/libamarok.la.
+    They are devel-only and, hence, useless in the private library like
+    libamarok case.
+  * Install *.lintian files with overrides.
+  * Add manual pages: amarokapp.1 amarokcollectionscanner.1 amarok_libvisual.1
+  * Do not install COPYING files which are present in some script directories.
+    Also remove useless (according to lintian) MacOS X resource fork file
+    rubygems/._gem_commands.rb
+  * Exclude amarok from amarok-engine-* packages dependency lists.
+
+ -- Modestas Vainius <modestas@vainius.eu>  Tue, 04 Mar 2008 15:28:46 +0200
+
+amarok (1.4.8-1) unstable; urgency=low
+
+  [ Adeodato Simó ]
+  * Build against libgpod-nogtk-dev.
+
+  * Update Build-Standards to 3.7.3:
+    + move menu entry to Applications/Sound.
+
+  * Build-depend on automake instead of automake1.9.
+
+  [ Modestas Vainius ]
+  * Add myself as maintainer with the permission from Adeodato Simó.
+  * Add Adeodato Simó as uploader.
+  * debian/control: drop Vcs-Bazaar field. amarok debian packaging is
+    now hosted at kde-extras svn repo therefore I'm adding appropriate
+    XS-Vcs-Svn and XS-Vcs-Browser fields.
+
+  * New upstream release (1.4.8) (Closes: #457352).
+  * Resync patches:
+    - proxy_lyrics.diff - removed, merged upstream.
+    - fix_gcc4.3_ftbfs.diff - removed, resolved upstream.
+  * Drop kdemultimedia-dev from Build-Depends. It's no longer needed.
+  * debian/rules: use /usr/share/automake-1.10 instead of *-1.9
+    because 'automake' package provides version 1.10.
+
+ -- Modestas Vainius <modestas@vainius.eu>  Mon, 24 Dec 2007 23:10:02 +0200
+
+amarok (2:1.4.9.1-0ubuntu3) hardy; urgency=low
+
+  * Added kdebase-kio-plugins as a recommened package
+
+ -- Jonathan Aquilina <eagles051387@gmail.com>  Tue, 15 Apr 2008 14:24:23 +0200
+
+amarok (2:1.4.9.1-0ubuntu2) hardy; urgency=low
+
+  [ Daniel Hahler]
+  * debian/patches/kubuntu_08_add_lastfm_recommended_radio.diff:
+    Add lastfm recommended radio station (LP: #103227)
+  * debian/patches/kubuntu_09_audio_mimetypes.diff:
+    - Add mimetypes audio/flac and audio/ogg (LP: #201291)
+
+  [ Harald Sitter ]
+  * Unbreak manual media device configuration by enhancing
+    kubuntu_08_luks_device_detection.diff (LP: #207704)
+
+ -- Harald Sitter <apachelogger@ubuntu.com>  Sat, 12 Apr 2008 13:47:12 +0200
+
+amarok (2:1.4.9.1-0ubuntu1) hardy; urgency=low
+
+  * Upstream patch release
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Thu, 10 Apr 2008 23:07:12 +0100
+
+amarok (2:1.4.9-0ubuntu1) hardy; urgency=low
+
+  * New upstream release
+
+ -- Harald Sitter <apachelogger@ubuntu.com>  Wed, 09 Apr 2008 13:09:03 +0200
+
+amarok (2:1.4.8-0ubuntu5) hardy; urgency=low
+
+  * Added kubuntu_08_luks_device_detection.diff to ajust Amarok's
+    media device detection to properly work with kdebase's
+    LUKS patch kubuntu_9913_kiomedialuks.diff) (LP: #186384)
+
+ -- Harald Sitter <apachelogger@ubuntu.com>  Tue, 18 Mar 2008 01:10:01 +0100
+
+amarok (2:1.4.8-0ubuntu4) hardy; urgency=low
+
+  * Update install-mp3 to correctly error when something goes wrong
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Thu, 13 Mar 2008 13:11:08 +0000
+
+amarok (2:1.4.8-0ubuntu3) hardy; urgency=low
+
+  [ Sven Boden ]
+  * Fix for bug "187406: Amarok install-mp3 fails silently" (LP #187406)
+
+  [ Sarah Hobbs ]
+  * Sponsored upload.  (Closes LP: #187406)
+  * Reworked patch to avoid setting absolute paths (eg /usr/bin/kdesu)
+
+ -- Sarah Hobbs <hobbsee@ubuntu.com>  Wed, 12 Mar 2008 00:50:22 +1100
+
+amarok (2:1.4.8-0ubuntu2) hardy; urgency=low
+
+  * Fix install-mp3 installation path (LP: #179624)
+
+ -- Guillaume Martres <smarter3@gmail.com>  Mon, 31 Dec 2007 11:50:29 +0100
+
+amarok (2:1.4.8-0ubuntu1) hardy; urgency=low
+
+  * New upstream release.
+  * Removed kubuntu_05_utf8_to_mtp_devices_fix.diff (applied upstream).
+  * Removed kubuntu_06_fix_amarok_freeze_installing_mp3.diff (applied upstream).
+  * Removed proxy_lyrics.diff (applied upstream).
+  * Removed overrides/ and it's content since there is no amarok-arts anymore.
+  * Removed amarok-gstreamer.install since there is no amarok-gstreamer anymore.
+  * Changed Standards-Version to 3.7.3.
+  * Moved "Homepage" from Description stanza to the source section.
+
+ -- Harald Sitter <apachelogger@ubuntu.com>  Mon, 17 Dec 2007 16:19:44 +0100
+
+amarok (2:1.4.7-2ubuntu5) hardy; urgency=low
+
+  * build without the libkerma-dev build dpendancy also ( realy fixed this
+    upload )
+
+ -- Brandon Holtsclaw <imbrandon@kubuntu.org>  Mon, 10 Dec 2007 01:56:48 -0600
+
+amarok (2:1.4.7-2ubuntu4) hardy; urgency=low
+
+  * build with --without-libkarma, as it seems to be default if left blank.
+
+ -- Brandon Holtsclaw <imbrandon@kubuntu.org>  Sat, 08 Dec 2007 09:49:20 -0600
+
+amarok (2:1.4.7-2ubuntu3) hardy; urgency=low
+
+  * removed --with-libkarma, libkarma{0,-dev} is not in Main yet.
+
+ -- Brandon Holtsclaw <imbrandon@kubuntu.org>  Wed, 05 Dec 2007 23:47:20 -0600
+
+amarok (2:1.4.7-2ubuntu2) hardy; urgency=low
+
+  * Rebuild for libmtp6 -> libmtp7 transition
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Tue, 04 Dec 2007 14:01:22 +0000
+
+amarok (2:1.4.7-2ubuntu1) hardy; urgency=low
+
+  * Merge with Debian, remaining changes in debian/KUBUNTU-DEBIAN-DIFFERENCES
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 03 Dec 2007 20:01:18 +0000
+
+amarok (1.4.7-2) UNRELEASED; urgency=low
+
+  * Build against libgpod-nogtk-dev.
+
+ -- Adeodato Simó <dato@net.com.org.es>  Sun, 26 Aug 2007 16:16:54 +0200
+
+amarok (1.4.7-1) unstable; urgency=low
+
+  * The "Are you breaking up with me?" release.
+
+ -- Adeodato Simó <dato@net.com.org.es>  Mon, 20 Aug 2007 11:00:49 +0200
+
+amarok (1.4.6-1) unstable; urgency=low
+
+  * New upstream version packaged.
+
+  * Drop magnatune_CVE-2006-6980.diff; a (better) fix was applied upstream.
+
+ -- Adeodato Simó <dato@net.com.org.es>  Fri, 22 Jun 2007 22:12:29 +0100
+
+amarok (1.4.5-5) unstable; urgency=low
+
+  * Rebuild against libtunepimp 0.5; change Build-Depends from libtunepimp3-dev
+    to libtunepimp-dev. (Closes: #425884)
+
+ -- Adeodato Simó <dato@net.com.org.es>  Fri, 25 May 2007 11:02:17 +0200
+
+amarok (1.4.5-4) unstable; urgency=low
+
+  * Upload to unstable.  (Closes: #421920)
+
+  * Remove build-dependency on dpkg-dev (the version in stable groks
+    ${binary:Version}), and drop version requirement on debhelper and
+    libtag1-dev as well.
+
+  * Drop the changes made to remove circular dependencies.  (Reopens: #368485,
+    closes: #415484, #412464)
+
+  * Add patch to fix FTBFS with gcc-4.3.  (Closes: #417684)
+
+  * Use ${binary:Version} instead of ${source:Version}.
+
+  * Add XS-VCS-Bzr field.
+
+  * Add watch file, and adjust download URL on debian/copyright.
+
+ -- Adeodato Simó <dato@net.com.org.es>  Fri, 11 May 2007 11:57:31 +0200
+
+amarok (1.4.5-3) experimental; urgency=low
+
+  * Add support for devices using MTP, build-dep on libmtp-dev added. 
+    (Closes: #405399)
+  * Add support for karma devices, build-dep on libkarma-dev added.
+    (Closes: #400801)
+  * Added patch fixing CVE-2006-6980: amarok magnatune unsafe shell.
+    (Closes: #410850)
+
+ -- Ana Beatriz Guerrero Lopez <ana@debian.org>  Mon, 12 Mar 2007 02:38:05 +0100
+
+amarok (1.4.5-2) experimental; urgency=low
+
+  * iPod support is back. Added versioned build-dep on libgpod-dev (>=0.4.2).
+    (Closes: #409985)
+  * Add patch to add the "Queue Track" functionality to the Amarok DCOP API:
+    queuemedia.patch. Patch by Isaac Clerencia <isaac@debian.org>
+  * Add patch to allow amarok get lyrics via http proxy with authentication.
+    Thanks to Filipe Lautert <filipe@icewall.org>. (Closes: #409568)
+  * Added versioned dep on amarok-engines | amarok-engine, thanks to Andreas
+    Pakulat for pointing this. (Closes: #409996). 
+
+ -- Ana Beatriz Guerrero Lopez <ana@debian.org>  Sat, 10 Feb 2007 00:40:10 +0100
+
+amarok (1.4.5-1) experimental; urgency=low
+
+  * New upstream release:
+    - Remove patches merged by upstream: invoke_browser, sparc-asm, magnatune,
+      kde134333_negative_length_fix, revert-fix-for-bug-116127.
+  * The XMMS visualization interface has been removed by upstream:
+    - Remove xmms-dev build-dep.
+    - amarok's description updated.
+    - update amarok.install/rules.
+  * iPod support temporarily dropped. (It needs libgpod >= 0.4.2, which is not
+    yet in Debian).
+
+ -- Ana Beatriz Guerrero Lopez <ana@debian.org>  Fri,  2 Feb 2007 05:15:29 +0100
+
+amarok (1.4.4-4) unstable; urgency=high
+
+  * Include final version of the magnatune.patch and really apply it.
+
+ -- Ana Beatriz Guerrero Lopez <ana@debian.org>  Sun, 18 Feb 2007 01:17:49 +0100
+
+amarok (1.4.4-3) unstable; urgency=high
+
+  * Edited patch magnatune.patch fixing CVE-2006-6980: amarok magnatune 
+    unsafe shell. (Closes: #410850). 
+  	The reference to the ruby scripts pointed in the bug report, is a problem
+    that was already solved in amarok 1.4.4.
+  * Add dep on unzip (needed to uncompress albums).
+
+ -- Ana Beatriz Guerrero Lopez <ana@debian.org>  Thu, 15 Feb 2007 22:28:13 +0100
+
+amarok (1.4.4-2) unstable; urgency=high
+
+  * Patched magnatune code to avoid multiple credit-card charges.
+    (Closes: #402309)
+
+ -- Ana Beatriz Guerrero Lopez <ana@debian.org>  Tue, 12 Dec 2006 16:51:13 +0100
+
+amarok (1.4.4-1) unstable; urgency=medium
+  
+  * Adding myself as uploader. ACK my last three NMUs...
+  * Removed circular dependencies. Now amarok-engines and amarok-$engine 
+    Recommends: amarok, instead of depends on amarok (Closes: #368485).
+  * Fix kde#134333: properly compute total playlist length if there are
+    tracks dynamic lengths (e.g. last.fm streams) in the playlist. Patch by
+    Modestas Vainius <geromanas@mailas.com>.
+  * Replaced ${Source-Version} with ${source:Version} and added versioned
+    build-dependency on dpkg-dev accordingly.
+
+ -- Ana Beatriz Guerrero Lopez <ana@debian.org>  Sun, 26 Nov 2006 03:42:59 +0100
+
+amarok (2:1.4.7-0ubuntu3) gutsy; urgency=low
+
+  * Added kubuntu_05_utf8_to_mtp_devices_fix.diff from upstream.  (KDE
+    Bug #139722)
+  * Added kubuntu_06_fix_amarok_freeze_installing_mp3.diff from
+    upstream.  (KDE Bug #147126, LP: #58617)  Thanks markey for fixing
+    this!
+  * Added amarok Suggests: libxine1-ffmpeg.  (LP: #134741)
+  * Added kubuntu_07_gnome_multimedia_keys.diff, a script that lets the
+    multimedia keys in GNOME work in amarok.  (LP: #87299)
+  * Use adept_batch update in install-mp3 not apt-get update
+
+ -- Sarah Hobbs <hobbsee@ubuntu.com>  Sat, 01 Sep 2007 00:11:20 +1000
+
+amarok (2:1.4.7-0ubuntu2) gutsy; urgency=low
+
+  * Rebuild for libmtp5 -> libmtp6 library transition.
+
+ -- Steve Kowalik <stevenk@ubuntu.com>  Sat, 18 Aug 2007 00:55:59 +1000
+
+amarok (2:1.4.7-0ubuntu1) gutsy; urgency=low
+
+  * New Upstream version
+  * debian/control: replaced automake1.8 with automake1.9
+
+ -- Stephan Hermann <sh@sourcecode.de>  Wed, 15 Aug 2007 09:47:17 +0200
+
+amarok (2:1.4.6-0ubuntu2) gutsy; urgency=low
+
+  * Rebuild for the libgpod1 -> libgpod2 library transition.
+  * Bump required version of the libgpod development headers.
+
+ -- Steve Kowalik <stevenk@ubuntu.com>  Tue, 17 Jul 2007 00:36:04 +1000
+
+amarok (2:1.4.6-0ubuntu1) gutsy; urgency=low
+
+  * New Upstream Release.  (LP: #46526)
+  * Fixed kubuntu-media-amarok syntax (LP: #112252)
+  * Removed kubuntu_05_magnatune_security_fix.diff - fixed upstream
+  * Removed kubuntu_06_right_click_sound_control_fix.diff - fixed upstream
+  * Removed kubuntu_07_monge_exports_correct_symbols.diff - fixed
+    upstream
+
+ -- Sarah Hobbs <hobbsee@ubuntu.com>  Tue, 19 Jun 2007 01:09:37 +1000
+
+amarok (2:1.4.5-0ubuntu7) feisty; urgency=low
+
+  * Spelling correction: amaroK -> Amarok
+  * Description update (no kio support with libxine - yet)
+
+ -- Harald Sitter <sitter.harald@gmail.com>  Tue,  3 Apr 2007 17:45:46 +0200
+
+amarok (2:1.4.5-0ubuntu6) feisty; urgency=low
+
+  * Fixed the install-mp3 script
+
+ -- Ryan Kavanagh <ryan@kubuntu.org>  Tue,  6 Mar 2007 19:11:17 -0500
+
+amarok (2:1.4.5-0ubuntu5) feisty; urgency=low
+
+  * Added patches:
+    - kubuntu_05_magnatune_security_fix.diff.  Fixes CVE #-2006-6979,
+      KDE Bug #138499
+    - kubuntu_06_right_click_sound_control_fix.diff.  KDE Bug #141672
+    - kubuntu_07_monge_exports_correct_symbols.diff
+  * All patches from amarok SVN.
+
+ -- Sarah Hobbs <hobbsee@ubuntu.com>  Thu, 15 Feb 2007 15:32:32 +1100
+
+amarok (2:1.4.5-0ubuntu4) feisty; urgency=low
+
+  * Correct thinko in .install for installing the missing files.
+
+ -- Steve Kowalik <stevenk@ubuntu.com>  Wed, 14 Feb 2007 00:17:29 +1100
+
+amarok (2:1.4.5-0ubuntu3) feisty; urgency=low
+
+  * Update libmtp build-dep to 0.1.3-0ubuntu1
+  * Install missing files (cd player .desktop file, libhttp11, amarok_addaspodcast.desktop)
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Wed,  7 Feb 2007 11:45:28 +0000
+
+amarok (2:1.4.5-0ubuntu2) feisty; urgency=low
+
+  * Added Build-dep libgpod-dev
+  * Fixed amarok.install
+    - Install collection bin files in the correct path
+      (Closes Malone #83454)
+    - Added back ipod lib (Closes Malone #83515)
+
+ -- Anthony Mercatante <tonio@ubuntu.com>  Tue, 06 Feb 2007 19:36:32 +0100
+
+amarok (2:1.4.5-0ubuntu1) feisty; urgency=low
+
+  [ Brandon Holtsclaw ]
+  * New Upstream Release
+  * Removed the following patches , adopted upstream
+    - invoke_browser.patch
+    - kubuntu_05_lastfm_xine.diff
+    - some-binaries-in-usr-lib.patch
+    - sparc-asm.patch
+
+  [ Sarah Hobbs ]
+  * Added dependancy kdebase-kio-plugins.  Closes malone #66764
+  * Compiling without stack smashing protection.  Closes malone #81768
+
+ -- Brandon Holtsclaw <imbrandon@kubuntu.org>  Sun,  4 Feb 2007 00:46:12 -0600
+
+amarok (2:1.4.4-0.3ubuntu4) feisty; urgency=low
+
+  * No-change upload for the libpq4->libpq5 transition.
+
+ -- Martin Pitt <martin.pitt@ubuntu.com>  Mon, 15 Jan 2007 15:39:10 +0000
+
+amarok (2:1.4.4-0.3ubuntu3) feisty; urgency=low
+
+  * Rebuild against libtunepimp5
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Fri,  8 Dec 2006 10:47:51 +0000
+
+amarok (2:1.4.4-0.3ubuntu2) feisty; urgency=low
+
+  * Add patch kubuntu_05_lastfm_xine.diff from upstream to make
+    last.fm streams work with Xine 1.1.3
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Tue,  5 Dec 2006 13:03:34 +0000
+
+amarok (2:1.4.4-0.3ubuntu1) feisty; urgency=low
+
+  * Fake Sync from debian unstable
+
+ -- Brandon Holtsclaw <imbrandon@kubuntu.org>  Thu, 23 Nov 2006 03:46:05 -0600
+
+amarok (2:1.4.4-0ubuntu3) feisty; urgency=low
+
+  * Compile with MTP Device Support
+
+ -- Brandon Holtsclaw <imbrandon@kubuntu.org>  Tue, 14 Nov 2006 22:13:11 -0600
+
+amarok (2:1.4.4-0ubuntu2) feisty; urgency=low
+
+  * Add debian/kubuntu-media-amarok and
+    debian amarok_play_audiocd.desktop for good KDE integration
+
+ -- Anthony Mercatante <tonio@ubuntu.com>  Fri, 03 Nov 2006 23:57:33 +0200
+
+amarok (2:1.4.4-0ubuntu1) feisty; urgency=low
+
+  * New Upstream Version
+  * Removed kubuntu_06_dapp_assert.diff and kubuntu_05_playlist_encoding.diff
+    adopted upstream
+
+ -- Brandon Holtsclaw <imbrandon@kubuntu.org>  Thu, 26 Oct 2006 16:19:30 -0500
+
+amarok (1.4.4-0.3) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Applied patch invoke_browser.patch to allow amarok open external URLs.
+    (Closes: #397266).
+  * Removed dependency on xmms and updated README.Debian. Thanks to Bryan 
+    Donlan and Michael Biebl. (Closes: #393141) 
+
+ -- Ana Beatriz Guerrero Lopez <ana@debian.org>  Sun, 19 Nov 2006 02:50:39 +0100
+
+amarok (1.4.4-0.2) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Applied patch to fix build on sparc. Thanks to Jurij Smakov for the patch.
+
+ -- Ana Beatriz Guerrero Lopez <ana@debian.org>  Sat,  4 Nov 2006 10:19:37 +0100
+
+amarok (1.4.4-0.1) unstable; urgency=low
+
+  * Non-maintainer upload with permission from the maintainer.
+  * New upstream release.
+  * Dropped patch 143_provided_upstream_playlist_encoding.diff,
+    merged by upstream.
+  * Moved architecture-dependent files from /usr/share to 
+    /usr/lib. Thanks to Ted Percival. (Closes: #392392)
+  * Updated debian/compat to 5.
+
+ -- Ana Beatriz Guerrero Lopez <ana@debian.org>  Tue, 31 Oct 2006 21:59:59 +0100
+
+amarok (1.4.3-1) unstable; urgency=low
+
+  * New upstream release packaged (closes: #386143, #386048). This version
+    works with newer MySQL versions, which closes: #384008, #384078, #385648.
+
+  * Update variable name in debian/patches/revert-fix-for-bug-116127.diff.
+
+  * Stop placing scripts in /usr/lib/amarok instead of /usr/bin. This is not
+    supported upstream, and ends up causing more trouble that not.
+
+  * Added ruby1.8-dev to Build-Depends, which seems to be needed now.
+
+ -- Adeodato Simó <dato@net.com.org.es>  Fri, 15 Sep 2006 19:46:51 +0200
+
+amarok (2:1.4.3-0ubuntu10) edgy; urgency=low
+
+  * Make sure amarok_njb support is installed to the correct location
+  * Closes Malone: #61492
+
+ -- Brandon Holtsclaw <imbrandon@kubuntu.org>  Sat, 14 Oct 2006 13:46:21 -0500
+
+amarok (2:1.4.3-0ubuntu9) edgy; urgency=low
+
+  * Set .pot name in debian/rules
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Sun,  1 Oct 2006 12:44:07 +0100
+
+amarok (2:1.4.3-0ubuntu8) edgy; urgency=low
+
+  * The DAAP client would crash Amarok under certain conditions when
+    kdelibs was compiled with asserts on. Thanks to  Ian Monroe
+  * Closes KDE: #132851
+
+ -- Brandon Holtsclaw <imbrandon@kubuntu.org>  Wed, 20 Sep 2006 21:10:11 -0500
+
+amarok (2:1.4.3-0ubuntu7) edgy; urgency=low
+
+  * Various fixes to install-mp3
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Wed, 20 Sep 2006 14:54:21 +0100
+
+amarok (2:1.4.3-0ubuntu6) edgy; urgency=low
+
+  * Added support for edgy ( and future TBA releases ) to install-mp3
+  * Closes Malone #60637
+
+ -- Brandon Holtsclaw <imbrandon@kubuntu.org>  Sat, 16 Sep 2006 03:56:07 -0500
+
+amarok (2:1.4.3-0ubuntu5) edgy; urgency=low
+
+  * Fixed a typo that prevented Amarok configuring Nomad Jukebox
+    in debian/rules
+
+ -- Brandon Holtsclaw <imbrandon@kubuntu.org>  Sat, 16 Sep 2006 01:48:11 -0500
+
+amarok (2:1.4.3-0ubuntu4) edgy; urgency=low
+
+  * Built --with-libnjb support ( Creative Nomad Devices )
+  * Added kubuntu_05_playlist_encoding.diff. This bug could result
+    in failure to restore the current playlist. (BR 133613)
+
+ -- Brandon Holtsclaw <imbrandon@kubuntu.org>  Fri, 15 Sep 2006 10:53:56 -0500
+
+amarok (2:1.4.3-0ubuntu3) edgy; urgency=low
+
+  * Fixed little error in install-mp3, in the case multiverse is
+    already activated. Code could be really optimized, but it works
+    as it is. I will probably make something clean after edgy release.
+
+ -- Anthony Mercatante <tonio@ubuntu.com>  Tue,  13 Sep 2006 22:26:14 +0200
+
+amarok (2:1.4.3-0ubuntu2) edgy; urgency=low
+
+  * Improved install-mp3 to manage ubuntu/gnome and other desktops correctly.
+    (closes #59007)
+
+ -- Anthony Mercatante <tonio@ubuntu.com>  Mon,  11 Sep 2006 17:02:14 +0200
+
+amarok (2:1.4.3-0ubuntu1) edgy; urgency=low
+
+  [ Brandon Holtsclaw ]
+  * New Upstream Release
+  * Removed kubuntu_0{5,6,7,8}_*.diff patches as they have been applyed upstream
+  * Added build-dep ruby1.8-dev and automake-1.9 as now required to build amarok
+
+  [ Jonathan Riddell ]
+  * Remove automake1.7 build-dep
+  * Install all files
+
+ -- Brandon Holtsclaw <imbrandon@kubuntu.org>  Mon,  4 Sep 2006 22:08:14 -0500
+
+amarok (2:1.4.2-0ubuntu3) edgy; urgency=low
+
+  [ Jonathan Riddell ]
+  * Remove kubuntu_03_podir.diff, not built with tar in .orig
+
+  [ Sarah Hobbs ]
+  * Added a more verbose error message when install-mp3 script fails
+
+  [ Brandon Holtsclaw ]
+  * Collection scanner would only restart a maximum of 2 times instead of
+    20. (fixed in SVN revision 578922) - kubuntu_08_scanner.diff
+  * MTP mediadevice support would not compile against libmtp versions gt
+    0.0.12. (fixed in SVN revision 576121) - kubuntu_06_mtp.diff
+  * AudioCD playback would stutter and sometimes freeze Amarok. (BR 133015)
+    - kubuntu_05_audiocd.diff
+  * Fixed bug which prevented Amarok from creating the collection database
+    in rare circumstances using SQLite. (BR 133072) - kubuntu_07_collection.diff
+
+ -- Brandon Holtsclaw <imbrandon@kubuntu.org>  Thu, 31 Aug 2006 12:01:16 -0500
+
+amarok (2:1.4.2-0ubuntu2) edgy; urgency=low
+
+  * amarok_libvisual helper added to amarok.install (malone #57636)
+  * Fixed typo in Sugests for libvisual-0.4-plugins Closes Last Half malone #55779
+
+ -- Brandon Holtsclaw <imbrandon@kubuntu.org>  Sun, 27 Aug 2006 05:52:34 -0500
+
+amarok (2:1.4.2-0ubuntu1) edgy; urgency=low
+
+  [ Brandon Holtsclaw ]
+  * Removed libgstreamer0.10-dev as its not needed anylonger
+    gst support has been droped upstream and in kubuntu
+  * Added libhal-dev as a build dep (malone #55779)
+
+  [ Daniel Molkentin ]
+  * Install DAAP media device
+
+  [ Sarah Hobbs ]
+  * New upstream version. Closes #24063, #49098, #47179, #52958 and other bugs
+  * Moved python-qt3 from recommends to depends.  Closes bugs #55075, #48724
+  * Removed python from suggests (already a dep of python-qt3)
+  * Changed suggests libvisual-0.2 to libvisual0.4.0-plugins.  Closes bug #55734
+  * Compiled with libvisual support.  Added build-dep libvisual-0.4-dev.  Closes other half of bug #55734
+  * Removed debian/amarok-gstreamer.install as we no longer distribute
+    amarok-gstreamer
+  * Change build-dep automake1.9 --> automake1.7
+  * Changed build-dep debhelper --> debhelper (>=5)
+  * Bumped Compat to 5
+
+ -- Brandon Holtsclaw <imbrandon@kubuntu.org>  Wed, 23 Aug 2006 07:11:02 -0500
+
+amarok (1.4.1-3) unstable; urgency=medium
+
+  * Promote ruby from Recommends to Depends.  (Closes: #376795, #377052)
+
+  * Build-depend on libnjb-dev and pass --with-libnjb to configure to gain
+    Creative Nomad Jukebox support.  (Closes: #328903)
+
+  * Re-enable libviusal support now that version 0.4 is in the archive.
+
+  * The proper spelling of the program is now Amarok instead of amaroK; update
+    various files to the new spelling.  (Closes: #376815)
+
+  * Updated years and list of authors in copyright files, plus some minor
+    cleanups.
+
+ -- Adeodato Simó <dato@net.com.org.es>  Tue, 11 Jul 2006 21:05:48 +0200
+
+amarok (1.4.1-2) unstable; urgency=low
+
+  * Revert fix for upstream Bug#116127: don't give artists whose all songs in
+    the collection are part of a compilation their own entry in the browser,
+    since that clutters the list unbearably. This is how 1.4.0 behaves.
+
+  * Add ruby to Build-Depends, missed in the previous upload.
+
+ -- Adeodato Simó <dato@net.com.org.es>  Tue,  4 Jul 2006 15:28:02 +0200
+
+amarok (1.4.1-1) unstable; urgency=low
+
+  * New upstream release:
+    + upstream removed Moodbar support in this version due to its instability
+      problems.  (Closes: #367792, #375940)
+    + requires libvisual 0.4, which is not in unstable: drop support for now,
+      and request new version in #376615.
+
+  * amaroK now includes Last.fm stream playing support. Introduced changes:
+    + update some-binaries-in-usr-lib.patch to cope with new helper script
+      amarok_proxy.rb.
+    + add an item to description mentioning this feature, pointing out that
+      Ruby is needed, both in the description and README.Debian.
+
+  * Link against SQLite dynamically again, since scores work now with it (at
+    least my testings confirm so).
+
+ -- Adeodato Simó <dato@net.com.org.es>  Tue,  4 Jul 2006 02:09:35 +0200
+
+amarok (2:1.4.1-0ubuntu3) edgy; urgency=low
+
+  * Make debian/install-mp3 executable.  Closes bug #52994
+  * Install amarokapp in /usr/bin. Closes bugs #16474, #52360
+  * Stopped compiling with exscalibar support - upstream
+    removed the moodbar
+
+ -- Sarah Hobbs <hobbsee@ubuntu.com>  Tue, 18 Jul 2006 13:55:53 +1000
+
+amarok (2:1.4.1-0ubuntu2) edgy; urgency=low
+
+  * Depend on amarok-xine not amarok-engines
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Wed, 12 Jul 2006 00:01:33 +0000
+
+amarok (2:1.4.1-0ubuntu1) edgy; urgency=low
+
+  * New upstream release
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Tue,  4 Jul 2006 22:46:21 +0000
+
+amarok (1.4.0a-1) unstable; urgency=low
+
+  * Revised tarball for 1.4.0 (closes: #367897), fixing the following issues:
+
+    + does not botch migration from 1.3 SQLite collections, which in addition
+      caused further collection rebuilds to appear empty. (Closes: #368396)
+    + correctly closes database connections, thus not failing with "too many
+      open files" and deleting the collection after some hours in pause mode.
+      (Closes: #368086)
+    + audio CDs can be reproduced again. (Upstream #127388)
+
+  * Switch to included SQLite; for some reason, dynamic linking against 3.3.5
+    makes scores unfunctional. (Closes: #367468)
+
+ -- Adeodato Simó <dato@net.com.org.es>  Sat, 27 May 2006 15:23:14 +0200
+
+amarok (1.4.0-1) unstable; urgency=low
+
+  * New upstream release. The upstream tarball no longer ships the GStreamer
+    engine, and aRts support was dropped a while ago, and this upload only
+    includes the XINE engine.
+
+    Bugs reported in the Debian BTS fixed in this version:
+
+    + collection is updated at start up. (Closes: #330017)
+    + metadata for icecast streams is displayed. (Closes: #349796)
+    + the correct charset is used for lyrics URLs. (Closes: #352882)
+    + iPods are recognized even after emptying them. (Closes: #350305)
+    + non-ascii characters are displayed correctly under non UTF-8
+      locales in the konqueror sidebar. (Closes: #353058)
+    + last.fm submission queue is flushed after network unavailability
+      even if no more tracks are played. (Closes: #344429)
+
+    Regressions fixed since the latest beta:
+
+    + iPod model detection works again, without needing libgpod-cvs.
+      (Closes: #364789)
+    + filling tags using MusicBrainz works again. (Closes: #364798)
+
+  * Enable Moodbar support, now that Exscalibar has entered unstable.
+    (Closes: #364588)
+
+  * Update Standards-Version to 3.7.2 (no changes required).
+
+ -- Adeodato Simó <dato@net.com.org.es>  Sun, 14 May 2006 16:42:14 -0500
+
+amarok (1.4-beta3c-1) experimental; urgency=low
+
+  * Third beta for the upcoming 1.4 version packaged.
+
+  * Build against libtunepimp3-dev.
+
+ -- Adeodato Simó <dato@net.com.org.es>  Sat, 15 Apr 2006 19:47:54 +0200
+
+amarok (1.4-beta2-3) experimental; urgency=low
+
+  * Rebuild against libmysqlclient15off. (Closes: #358490)
+
+ -- Adeodato Simó <dato@net.com.org.es>  Thu, 23 Mar 2006 02:18:56 +0100
+
+amarok (1.4-beta2-2) experimental; urgency=low
+
+  * Fix yesterday's brainfart: aKode can't output to aRts, so remove this
+    statement from the description.
+
+  * In addition, and after a bit of chit-chat with upstream, follow their
+    wishes and not package aKode at all (bye amarok-arts), and don't include
+    GStreamer 0.10 support for now.
+
+ -- Adeodato Simó <dato@net.com.org.es>  Mon,  6 Mar 2006 23:37:43 +0100
+
+amarok (1.4-beta2-1) experimental; urgency=low
+
+  * Second beta for the upcoming 1.4 version packaged.
+
+    This release drops the aRts engine; in order to keep support for
+    outputting to aRts, ship the aKode engine in the amarok-arts package.
+
+    Also, GStreamer 0.8 support is dropped in favour of GStreamer 0.10. Update
+    build-dependencies and amarok-gstreamer's dependencies accordingly.
+
+  * Use strncpy instead of qstrdup in the patch for main.cpp, so that argv[0]
+    is overwritten correctly. This closes: #352171 (amaroK not remembering the
+    desktop it was on upon login), and incidentally makes Erich Schubert happy.
+
+  * Drop build-dependency on libgtk2.0-dev now that #353590 is fixed.
+
+ -- Adeodato Simó <dato@net.com.org.es>  Mon,  6 Mar 2006 05:44:33 +0100
+
+amarok (1.4-beta1-r511476b) experimental; urgency=low
+
+  * First beta (plus SVN) for the upcoming 1.4 version packaged.
+    (Closes: #352590)
+
+  * Update build-depends to support iRiver iFP (B-D: libifp-dev, libusb-dev),
+    and iPod via libgpod (B-D: libgpod-dev; plus libgtk2.0-dev due to #353590).
+
+  * Since lyrics downloading is now implemented in a separate Ruby script,
+    promote ruby from Suggests to Recommends, so that functionality is ideally
+    not lost. Add a note with this information to README.Debian.
+
+  * Link against sqlite dynamically again, since amaroK 1.4 can cope with the
+    restriction explained in the changelog entry for 1.3.1-1 and Bug#326648.
+
+ -- Adeodato Simó <dato@net.com.org.es>  Mon, 20 Feb 2006 05:42:15 +0100
+
+amarok (1.3.9-1) unstable; urgency=medium
+
+  * New upstream bugfix release.
+
+  * Build against libtunepimp3-dev. (Closes: #359086)
+
+ -- Adeodato Simó <dato@net.com.org.es>  Thu, 27 Apr 2006 00:33:29 +0200
+
+amarok (1.3.8-1) unstable; urgency=low
+
+  * New upstream bugfix release:
+
+    + fetching lyrics works again. (Closes: #344509)
+
+  * Do not use g++-3.4 in arm, m68k and hppa anymore, sid's g++-4.0 is
+    expected to work. (Closes: #342953)
+
+  * Update MySQL build-dependency to libmysqlclient15-dev. (Closes: #343759)
+
+  * Switch patch management to quilt, and make use of patchsys-quilt.mk.
+
+  * Drop build-depends version constraints that are satisfied with stable.
+    Drop the ones for kdebase-dev and kdemultimedia-dev as well, which were
+    transient and all arches have the minimum required versions in sid now.
+
+ -- Adeodato Simó <dato@net.com.org.es>  Wed, 18 Jan 2006 01:43:40 +0100
+
+amarok (1.3.7-1) unstable; urgency=low
+
+  * New upstream bugfix release.
+
+  * Built against kdelibs4c2a, so installable in sid again. (Closes: #341959)
+    Temporarily bump build-deps on kdebase-dev and kdemultimedia-dev.
+
+  * Remove debian/patches/taglib-1.3.1-suffices.diff, since taglib 1.4 is in
+    testing and unstable, and I'll be using a backport for sarge packages.
+    Bump version constraint in debian/control.
+
+  * Again, update my e-mail address in debian/control, yada yada.
+
+ -- Adeodato Simó <dato@net.com.org.es>  Wed, 07 Dec 2005 06:44:59 +0100
+
+amarok (2:1.3.9-0ubuntu4) dapper; urgency=low
+
+  * debian/cdbs/kde.mk:
+    - added dh_iconcache.
+
+ -- Daniel Holbach <daniel.holbach@ubuntu.com>  Sun, 21 May 2006 16:16:47 +0200
+
+amarok (2:1.3.9-0ubuntu3) dapper; urgency=low
+
+  * Don't install hr translations, it's really Hindi
+    Closes Malone #44517
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Tue, 16 May 2006 00:14:56 +0300
+
+amarok (2:1.3.9-0ubuntu2) dapper; urgency=low
+
+  * Rebuild against the new libmysqlclient15off with correct symbols.
+
+ -- Adam Conrad <adconrad@ubuntu.com>  Thu,  6 Apr 2006 12:46:44 +1000
+
+amarok (2:1.3.9-0ubuntu1) dapper; urgency=low
+
+  * New upstream release
+  * Use automake1.7, that's what the upstream file seems to use
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Sat, 25 Mar 2006 17:32:01 +0000
+
+amarok (2:1.3.8-0ubuntu7) dapper; urgency=low
+
+  * Re-uploaded for new language-pack scripts, no changes
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Wed, 15 Mar 2006 18:49:41 +0000
+
+amarok (2:1.3.8-0ubuntu6) dapper; urgency=low
+
+  * Re-uploaded for new language-pack scripts, no changes
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Thu, 23 Feb 2006 12:28:47 +0000
+
+amarok (2:1.3.8-0ubuntu5) dapper; urgency=low
+
+  * Add kubuntu_03_podir.diff, change podir so .pot file gets
+    generated in a place that keeps the language pack scripts happy
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 20 Feb 2006 19:09:30 +0000
+
+amarok (2:1.3.8-0ubuntu4) dapper; urgency=low
+
+  * Remove amarok-gstreamer from enginePackages substvars
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Mon, 20 Feb 2006 11:44:19 +0000
+
+amarok (2:1.3.8-0ubuntu3) dapper; urgency=low
+
+  * Remove use of GCC 3.4
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Thu, 16 Feb 2006 10:52:51 +0000
+
+amarok (2:1.3.8-0ubuntu2) dapper; urgency=low
+
+  * Remove GStreamer 0.8 support, default to xine
+  * Change from libmysqlclient14-dev to libmysqlclient15-dev build-dep
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Wed,  1 Feb 2006 11:56:01 +0000
+
+amarok (2:1.3.8-0ubuntu1) dapper; urgency=low
+
+  * New upstream release
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Sun, 15 Jan 2006 19:10:14 +0000
+
+amarok (2:1.3.7-0ubuntu4) dapper; urgency=low
+
+  * weaken build dependencies
+
+ -- Reinhard Tartler <siretart@ubuntu.com>  Fri, 30 Dec 2005 14:55:13 +0100
+
+amarok (2:1.3.7-0ubuntu3) dapper; urgency=low
+
+  * Add kubuntu_02_read_kubuntu_config.diff to make it read Kubuntu's
+    amarokrc file, which hides the splash screen
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Thu, 15 Dec 2005 20:13:28 +0000
+
+amarok (2:1.3.7-0ubuntu2) dapper; urgency=low
+
+  * debian/control: Removed the text about libvisual. There is no libvisual
+    support right now in ubuntu
+
+ -- Stephan Hermann <sh@sourcecode.de>  Wed,  7 Dec 2005 23:52:58 +0100
+
+amarok (2:1.3.7-0ubuntu1) dapper; urgency=low
+
+  * New upstream release
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Tue,  6 Dec 2005 20:59:31 +0000
+
+amarok (2:1.3.6-1ubuntu3) dapper; urgency=low
+
+  * Make amarok-gstreamer default engine
+  * Add kubuntu_01_kdepot.diff for pot generation
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Tue, 29 Nov 2005 19:18:38 +0000
+
+amarok (2:1.3.6-1ubuntu2) dapper; urgency=low
+
+  * debian/substvars: moved gstreamer0.8-mad to Suggests section
+  * Update kde.mk for .pot generation
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Sat, 26 Nov 2005 02:52:27 +0000
+
+amarok (2:1.3.6-1ubuntu1) dapper; urgency=low
+
+  * Sync with debian, and readded the Ubuntu specific Epoch
+  * Merged the debian/changelog
+  * debian/control:
+    - Removed libvisual-dev, libsdl1.2-dev from build-deps
+    - Removed libvisual-plugins from Suggests
+  * debian/amarok.install: prevent installing amarok_libvisual
+
+ -- Stephan Hermann <sh@sourcecode.de>  Sun, 20 Nov 2005 18:32:06 +0100
+
+amarok (1.3.6-1) unstable; urgency=low
+
+  * New upstream bugfix release:
+
+    + last.fm submissions are properly saved on disk while offline again; they
+      had been broken by Qt 3.3.5. (Closes: #334469, #337109)
+    + includes missing semicolon in amarok.desktop. (Closes: #336026)
+
+  * Update my e-mail address in debian/control.
+
+ -- Adeodato Simó <dato@the-barrel.org>  Tue, 08 Nov 2005 10:40:42 +0100
+
+amarok (1.3.5-1) unstable; urgency=low
+
+  * New upstream bugfix release, quickly released to fix a potential crash at
+    startup (upstream #114983).
+
+ -- Adeodato Simó <asp16@alu.ua.es>  Tue, 25 Oct 2005 14:55:29 +0200
+
+amarok (1.3.4-1) unstable; urgency=low
+
+  * New upstream bugfix release, which makes this maintainer of yours
+    immensely happy because a fix for upstream #114195 is included.
+    ("Collection scanner ignored files with non-ascii characters").
+
+  * Add libvisual support (closes: #335053). Thanks to Jean-Rémy Falleri for
+    the heads-up. Changes needed:
+
+    + add libvisual0.2-dev and libsdl1.2-dev to Build-Depends.
+    + add libvisual0.2-plugins to Suggests, and mention it in the paragraph
+      regarding visualization plugins in amarok's description.
+    + add the appropriate snippet to some-binaries-in-usr-lib.patch in order
+      to cope with amarok_libvisual installed in /usr/lib/amarok instead of
+      /usr/bin, as mandated by Policy.
+
+ -- Adeodato Simó <asp16@alu.ua.es>  Mon, 24 Oct 2005 09:30:22 +0200
+
+amarok (1.3.3-1) unstable; urgency=low
+
+  * New upstream bugfix release:
+
+    + does not loose playlist / podcasts on restart. (Closes: #329878)
+    + PostgreSQL configuration dialog no longer shows MySQL's. (Closes: #327630)
+
+  * Updated the Debian menu icons to the new logo.
+
+  * Updated copyright notice, list of authors, and FSF postal address in
+    debian/copyright.
+
+ -- Adeodato Simó <asp16@alu.ua.es>  Thu, 13 Oct 2005 00:04:34 +0200
+
+amarok (1.3.2-1) unstable; urgency=low
+
+  * New upstream bugfix release, featuring the return of alsasink support.
+
+ -- Adeodato Simó <asp16@alu.ua.es>  Wed, 21 Sep 2005 04:14:52 +0200
+
+amarok (1.3.1-2) unstable; urgency=low
+
+  * Use g++ 3.4 in arm, m68k and hppa.
+
+ -- Adeodato Simó <asp16@alu.ua.es>  Tue, 06 Sep 2005 00:21:03 +0200
+
+amarok (1.3.1-1) unstable; urgency=low
+
+  * New upstream bugfix release. Beware, though, that the GStreamer engine has
+    been rewritten (!), and ALSASINK SUPPORT REMOVED due to temporary breakage.
+
+  * Use the internal copy of sqlite for now. This fixes the collection being
+    non functional with SQLite 3.2.5 due to this version preventing a database
+    handle opened in one thread to be used in another. See Bug#326648 for
+    reference. (Closes: #326562, #312386)
+
+  * Enable PostgreSQL support (closes: #326612, #326713):
+
+    + debian/rules: pass --enable-postgresql to ./configure.
+    + debian/control: add libpq-dev to Build-Depends.
+
+    (Before somebody comes around with the word "bloat" ready, libpq4 is 6
+     times smaller than libmysqlclient14.)
+
+  * Regain preciousss "my `grep -c NEEDED` is smaller than yours" karma by not
+    using LIBADD in the statusbar convenience lib. The Depends line had gained
+    some weight in 1.2.3-1.
+
+ -- Adeodato Simó <asp16@alu.ua.es>  Mon, 05 Sep 2005 20:57:41 +0200
+
+amarok (2:1.3.1-0ubuntu4) breezy; urgency=low
+
+  * Add kubuntu_02_column_sort_crash.diff fix a
+    crash on column sort http://bugs.kde.org/113042
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Tue,  4 Oct 2005 16:14:12 +0100
+
+amarok (2:1.3.1-0ubuntu3) breezy; urgency=low
+
+  * Add kubuntu_01_alsasink.diff to fix and reenable alsasink
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Mon,  3 Oct 2005 22:40:05 +0100
+
+amarok (2:1.3.1-0ubuntu2) breezy; urgency=low
+
+  * debian/control: added khelpcenter as suggestion
+
+ -- Stephan Hermann <sh@sourcecode.de>  Sat, 17 Sep 2005 02:23:08 +0200
+
+amarok (2:1.3.1-0ubuntu1) breezy; urgency=low
+
+  * New Upstream Release
+  * Merged the Debian package from Adeodato Simó
+  * debian/substvars: moved gstreamer0.8-mad to Suggests section
+
+ -- Stephan Hermann <sh@sourcecode.de>  Fri, 16 Sep 2005 19:59:06 +0200
+
+amarok (1.3.0-1) unstable; urgency=low
+
+  * New upstream release packaged (closes: #323249). Bugs reported in the
+    Debian BTS fixed in this version:
+
+    + does not display advertisements in lyrics. (Closes: #321499)
+    + pre-amp in the equalizer works with XINE engine too. (Closes: #283750)
+    + includes PartyMode. (Closes: #293293)
+    + includes equalizer presets. (Closes: #283761)
+    + builds fine with GCC 4.0. (Closes: #314779)
+
+  * Updated Build-Dependencies:
+
+    + automake1.6 to automake1.9.
+    + libmysqlclient12-dev to libmysqlclient14-dev.
+    + temporarily bump version constraint in kdemultimedia-dev and kdebase-dev
+      in order to allow an early upload in the middle of the KDE transition.
+
+  * Adjustments to the build-system:
+
+    + do not require TagLib 1.4.0 since it's not in Debian yet (#323280).
+    + don't use KDE_FINAL in amarok/src since both MySQL and KDE have had the
+      brilliant idea to define a struct/class named "NET".
+
+  * This version links against libtunepimp2c2, so libtunepimp2 0.3.0-4
+    breakage does not affect us anymore. (Closes: #318000)
+
+  * Update Standards-Version to 3.6.2 (no changes required).
+
+ -- Adeodato Simó <asp16@alu.ua.es>  Sat, 03 Sep 2005 01:42:56 +0200
+
+amarok (1.2.4-1) unstable; urgency=low
+
+  * The "following Debian Policy is cool, except when it's not" release.
+
+  * New upstream bugfix release:
+
+    + amaroK now correctly displays the name of the first available engine,
+      instead of an empty line. (Closes: #307949)
+
+  * The KDE Session Manager can now restore amaroK on login (closes: #302852,
+    #308099). Patch amarokapp to set its own argv[0] to 'amarok', since for the
+    session manager to restore an application the binary must be in the $PATH.
+
+  * Made the crash handler aware that amarokapp is in /usr/lib/amarok, and not
+    in /usr/bin.
+
+  * Include small patch to fix upstream bug 103510 ("systray icon continues
+    'playing' after songs end, if 'clear list' was hit while playing").
+
+ -- Adeodato Simó <asp16@alu.ua.es>  Mon, 06 Jun 2005 00:08:28 +0200
+
+amarok (2:1.2.4-0ubuntu4) breezy; urgency=low
+
+  * Rebuild for the xorg -> mesa GL/GLU transition.
+
+ -- Adam Conrad <adconrad@ubuntu.com>  Sun, 21 Aug 2005 19:34:41 +1000
+
+amarok (2:1.2.4-0ubuntu3) breezy; urgency=low
+
+  * Add kubuntu_02_gstreamer_output.patch to default GStreamer to alsasink
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Wed, 13 Jul 2005 18:19:28 +0000
+
+amarok (2:1.2.4-0ubuntu2) breezy; urgency=low
+
+  * Default to GStreamer plugin
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Wed,  6 Jul 2005 15:30:52 +0000
+
+amarok (2:1.2.4-0ubuntu1) breezy; urgency=low
+
+  * New upstream release
+  * Add kubuntu_01_gcc4_fixes.patch to fix compiler errors
+
+ -- Jonathan Riddell <jr@jriddell.org>  Fri,  3 Jun 2005 17:22:10 +0000
+
+amarok (1.2.3-1) unstable; urgency=low
+
+  * New upstream bugfix release.
+
+  * This version fixes an important memory leak in the GStreamer engine that
+    happened when a radio stream stalled. (Closes: #299931)
+
+ -- Adeodato Simó <asp16@alu.ua.es>  Tue, 29 Mar 2005 01:43:28 +0200
+
+amarok (2:1.2.3-1ubuntu4) hoary; urgency=low
+
+  * Revert back to amarok-arts on request of mdz
+
+ -- Chris Halls <chris.halls@credativ.co.uk>  Wed,  6 Apr 2005 09:33:35 +0100
+
+amarok (2:1.2.3-1ubuntu3) hoary; urgency=low
+
+  * Switch default engine to amarok-xine, which is better supported
+    upstream and is less buggy (Hoary: #8429, #8255)
+
+ -- Chris Halls <chris.halls@credativ.co.uk>  Mon,  4 Apr 2005 20:01:48 +0100
+
+amarok (2:1.2.3-1ubuntu2) hoary; urgency=low
+
+  * Add build-depend on libtool.
+  * Remove automake1.6 patch
+
+ -- Jonathan Riddell <jr@jriddell.org>  Wed, 30 Mar 2005 14:35:20 +0100
+
+amarok (2:1.2.3-1ubuntu1) hoary; urgency=low
+
+  * Sync with Debian
+
+ -- Jonathan Riddell <jr@jriddell.org>  Wed, 30 Mar 2005 04:25:27 +0000
+
+amarok (1.2.2-1) kalyxo-unstable; urgency=low
+
+  * New upstream bugfix release.
+
+  * Added a menu file, plus XPM icons.
+
+  * Switched to tarball-in-tarball for the .orig.tar.gz (which is sensibly
+    smaller now, since upstream uses bz2). Added bzip2 to Build-Depends.
+
+  * Build-depend on automake1.6 and libtool, and regenerate configure and
+    Makefiles.in at build-time.
+
+  * Use the kde.mk class maintained by the Debian KDE Maintainers, instead
+    of the one shipped with cdbs.
+
+ -- Adeodato Simó <asp16@alu.ua.es>  Thu, 17 Mar 2005 19:38:34 +0100
+
+amarok (1.2.1-1) unstable; urgency=low
+
+  * New upstream bugfix release.
+
+  * Include patch from CVS to make amaroK bind listening TCP connections to
+    the local interface only. Related to Bug#297693, but not the same.
+
+ -- Adeodato Simó <asp16@alu.ua.es>  Fri, 04 Mar 2005 14:54:34 +0100
+
+amarok (1.2.0-1) unstable; urgency=low
+
+  * New upstream release packaged (closes: #296139). Lots of improvements and
+    new functionality, see the changelog or http://amarok.kde.org for details.
+    Bugs reported in the Debian BTS fixed with in this version:
+
+    + the search text input element is now cleared when the user writes
+      something there. (Closes: #278359)
+
+    + analyzers work with the XINE engine. (Closes: #287091)
+
+  * amaroK's collection can be now stored in a MySQL database:
+
+    + Build-Depend on libmysqlclient12-dev
+
+    + Pass --enable-mysql to configure.
+
+  * amaroK now includes a sidebar plugin for Konqueror:
+
+    + debian/amarok.install:
+      - add files for the konqueror sidebar.
+
+    + debian/control:
+      - added kdebase-dev as Build-Dependency.
+
+    + debian/rules:
+      - exclude konqsidebar_universalamarok.so from dh_shlibdeps, so that
+        amarok doesn't end up depending on konqueror. (The plugin will be
+        ignored in systems without konqueror installed.)
+
+  * Other changes:
+
+    + amaroK now ships several scripts to enhance it. These are written in
+      Python and Ruby, so add those as suggested packages. Added note to
+      README.Debian about this, too.
+
+    + removed sqlite3_in_configure.in.patch, no longer necessary in 1.2.
+
+    + added www-browser as an alternative for the konqueror suggests, since
+      upstream fixed the code so that the configured browser is used.
+
+    + renamed debian/README to debian/README.Debian, so that it gets
+      installed. D'oh!
+
+    + debian/control:
+      - remove Build-Dependency on libkjsembed-dev, no longer needed.
+
+    + debian/amarok.install:
+      - install amarok.profile.xml into /usr/share/apps/profiles.
+
+ -- Adeodato Simó <asp16@alu.ua.es>  Wed, 23 Feb 2005 03:03:37 +0100
+
+amarok (1.1.1-2) unstable; urgency=high
+
+  * Upload to get rid of the dependency on libflac4, which is not longer in
+    the archive (closes: #289344). Urgency set to high as other packages with
+    RC bug fixes can't enter testing because of the libflac6 transition not
+    being ready.
+
+    + Relibtoolized the package, so that binaries won't link against not
+      needed libraries. Introduced disable_no_undefined.patch, many thanks to
+      Daniel Schepler for his insight with this (and for providing the patch).
+      [This has reduced the number of NEEDED libraries from 45 to 18, libflac
+      being among them.]
+
+    + debian/control:
+      - version Build-Dependency on libtunepimp2-dev to (>= 0.3.0-2.1).
+
+  * Some new versions of libraries have become available in Debian since the
+    last upload:
+
+    + Taglib 1.3 is now in the archive:
+      - removed debian/patches/taglib-1.2-suffices.patch.
+      - update Build-Depends to libtag1-dev (>> 1.3.1).
+
+    + SQLite 3 is now in the archive:
+      - changed Build-Depends on libsqlite0-dev to libsqlite3-dev.
+      - pass --without-included-sqlite to ./configure.
+      - patch configure.in to check for sqlite3 (>= 3.0). Upstream forgot to
+        update this check in the 1.1 series. [sqlite3_in_configure.in.patch]
+
+  * New package relationships:
+
+    + amarok now recommends kdemultimedia-kio-plugins, which is needed to play
+      audio CDs.
+
+    + amarok now suggests konqueror, since it's called in the MusicBrainz
+      dialog and some other places. (Closes: #282523)
+
+  * Created a README.Debian files with the following:
+
+    + Explain why the amarokapp and amarok_xmmswrapper2 binaries are shipped
+      in /usr/lib/amarok instead of /usr/bin, differing from upstream.
+
+    + Describe a fix for the 'Socket-path is not a link or a directory' error.
+
+    + Explicitly mention what is needed to play audio CDs in amarok.
+
+  * Other changes:
+
+    + Patched admin/configure.in.min to include AM_MAINTAINER_MODE. To make
+      the .diff.gz stuff smaller, force automake-1.6 (which upstream uses) in
+      admin/detect-autoconf.sh. [am_maintainer_mode.patch, automake-1.6.patch]
+
+    + Prevent admin/cvs.sh from creating .gmo files at "make dist" time, since
+      those can't be shipped in the .diff.gz. [gmo_files_at_build_time.patch]
+
+    + debian/amarok.1:
+      - correct "hyphen vs. minus sign" usage.
+
+ -- Adeodato Simó <asp16@alu.ua.es>  Fri, 14 Jan 2005 01:54:47 +0100
+
+amarok (1.1.1-1) unstable; urgency=low
+
+  * New upstream release packaged. Most notably, fixes several GStreamer
+    engine related bugs.
+
+  * debian/control: add to amarok-gstreamer's description that is not possible
+    to use artssink for output.
+
+  * debian/rules:
+    - call dh_install with --list-missing (DEB_DH_INSTALL_ARGS).
+
+  * debian/patches/:
+    - removed proper-otherlang-handbook-path.patch, issue fixed upstream.
+
+ -- Adeodato Simó <asp16@alu.ua.es>  Sat, 09 Oct 2004 22:51:06 +0200
+
+amarok (1.1.0-2) unstable; urgency=low
+
+  * Fix the location of translated amaroK handbook: kde/HTML/$LANG/amarok, not
+    kde/HTML/$LANG directly. [debian/patches/proper-otherlang-handbook-path.patch]
+
+ -- Adeodato Simó <asp16@alu.ua.es>  Mon, 27 Sep 2004 14:02:30 +0200
+
+amarok (1.1.0-1) unstable; urgency=low
+
+  * New upstream version:
+    - several last minute fixes.
+    - includes handbook in several languages (da, et, fr, it, pt, sv).
+
+  * First upload to Debian (closes: #236696).
+
+ -- Adeodato Simó <asp16@alu.ua.es>  Mon, 27 Sep 2004 01:53:56 +0200
+
+amarok (1.1-cvs-0+kalyxo1) experimental; urgency=low
+
+  * New maintainer. Thanks to Peter Rockai for his initial work.
+
+  * Updated to amaroK 1.1 CVS (2004-09-24):
+    - temporarily link statically against libsqlite, since sqlite >= 3.0.7 is
+      required and is not available in Debian (requested in #272271).
+    - added debian/patches/taglib-1.2-suffices.patch to lower the requirement
+      from taglib 1.3 (requested in #273029) to 1.2, which is enough.
+    - new package amarok-xine (yet another engine for amaroK, hurray!)
+    - added the following Build-Dependencies:
+      + libkjsembed-dev (amaroK is now JavaScript scriptable).
+      + libtunepimp2-dev (MusicBrainz support).
+      + libxine-dev (for the xine engine).
+      + libtag1-dev (missing).
+
+  * New package amarok-engines:
+    - depends on all the available engine packages and will be installed by
+      default unless the user specifies an specific engine.
+    - all the amarok-* packages Provide: amarok-engine, and amarok now
+      Depends: amarok-engines | amarok-engine.
+
+  * Removed the amarok-xmms package:
+    - its single binary amarok_xmmswrapper2 is now included in the main amarok
+      package.
+    - include some hackery to prevent amarok from depending on xmms (!).
+      amaroK just does a no-op and issues a warning on stderr if xmms is not
+      installed and user opens the visualizations menu, so this seems safe.
+      A xmms-lib package (in which amarok could easily depend) is requested in
+      #272913.
+
+  * Install amarokapp and amarok_xmmswrapper2 in /usr/lib/amarok instead of
+    /usr/bin:
+    - needed for FHS/Debian Policy compliance.
+    - added debian/patches/some-binaries-in-usr-lib.patch to fix locations in
+      source (amarok/src/loader/loader.cpp, amarok/src/socketserver.cpp).
+
+  * Added lintian overrides for an aRts module which must go in /usr/lib
+    despite not being a shared library. noatun and some other arts-related
+    packages have the same problem, if someone has a solution please share.
+
+  * Made /usr/share/doc/amarok-* symlinks to /usr/share/doc/amarok.
+
+  * Do not make amarok-arts depend on the meta-package "arts"; the
+    dependencies given by ${shlib:Depends} do suffice.
+
+  * debian/control: updated to Standars-Version 3.6.1.
+
+ -- Adeodato Simó <asp16@alu.ua.es>  Fri, 24 Sep 2004 02:49:46 +0200
+
+amarok (1.0.2-1) unstable; urgency=low
+
+  * New upstream version.
+
+ -- Peter Rockai (mornfall) <mornfall@danill.sk>  Thu,  5 Aug 2004 14:23:23 +0200
+
+amarok (1.0.1-1) unstable; urgency=low
+
+  * New upstream version
+  * Make depends among amarok packages versioned
+  * Prepare to upload into Debian, closes: #236696
+  * Add manpage for amarok by Alejandro Exojo
+
+ -- Peter Rockai (mornfall) <mornfall@danill.sk>  Wed, 30 Jun 2004 23:24:16 +0200
+
+amarok (1.0.0-3) unstable; urgency=low
+
+  * Dynamically link against libsqlite0
+  * Fix gstreamer dependencies
+  * Various small fixes (sections, descriptions, doc dirs)
+  * Thanks go to Adeodato Simó for help with various issues
+
+ -- Peter Rockai (mornfall) <mornfall@danill.sk>  Sat, 26 Jun 2004 23:06:00 +0200
+
+amarok (1.0.0-2) unstable; urgency=low
+
+  * Make the depends on amarok-gstreamer a bit more tight. Only depend on
+    audiosink, recommend the decoder plugins.
+  * Make the amarok engines depend on amarok itself.
+  * Compile with xmms visualisation support.
+
+ -- Peter Rockai (mornfall) <mornfall@danill.sk>  Wed, 23 Jun 2004 13:58:12 +0200
+
+amarok (1.0.0-1) unstable; urgency=low
+
+  * Build official 1.0.0 release.
+
+ -- Peter Rockai (mornfall) <mornfall@danill.sk>  Wed, 16 Jun 2004 23:48:52 +0200
+
+amarok (1.0-pre1-2) unstable; urgency=low
+
+  * Fix amarok-arts package, was missing mcop files. Duh.
+
+ -- Peter Rockai (mornfall) <mornfall@danill.sk>  Wed, 16 Jun 2004 23:25:29 +0200
+
+amarok (1.0-pre1-1) unstable; urgency=low
+
+  * First 1.0.0 prerelease.
+
+ -- Peter Rockai (mornfall) <mornfall@danill.sk>  Wed, 16 Jun 2004 10:18:31 +0200
+
+amarok (1.0-beta4-2) unstable; urgency=low
+
+  * Patch to final beta4 version.
+
+ -- Peter Rockai (mornfall) <mornfall@danill.sk>  Tue,  1 Jun 2004 17:47:53 +0200
+
+amarok (1.0-beta4-1) unstable; urgency=low
+
+  * New upstream RC (beta4-rc1).
+  * Build with GST support.
+
+ -- Peter Rockai (mornfall) <mornfall@danill.sk>  Tue,  1 Jun 2004 10:24:09 +0200
+
+amarok (1.0-beta3-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Peter Rockai (mornfall) <mornfall@danill.sk>  Sat, 29 May 2004 17:08:55 +0200
+
+amarok (1.0-beta1-0) workstation-unstable; urgency=low
+
+  * Initial packaging
+
+ -- Peter Rockai (mornfall) <mornfall@mornfall.homeip.net>  Sun, 11 Apr 2004  17:05:00 +0200
