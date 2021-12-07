@@ -1,9 +1,10 @@
-amarok (2:2.9.999-20211201+git08860b9f69) UNRELEASED; urgency=medium
+amarok (2:2.9.999-20211207+gitb3a01d0fcc) UNRELEASED; urgency=medium
 
   * Latest upstream git.
   * Latest upstream git.
+  * Latest upstream git.
 
- -- Gitlab CI Salsa Pipeline <gitlab-ci@jakobmeng.de>  Wed, 01 Dec 2021 00:05:53 +0000
+ -- Gitlab CI Salsa Pipeline <gitlab-ci@jakobmeng.de>  Tue, 07 Dec 2021 00:04:31 +0000
 
 amarok (2:2.9.999-1) unstable; urgency=medium
 
