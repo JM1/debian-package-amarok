@@ -301,7 +301,7 @@ ________EOF
     _date_version=$(date +%Y%m%d)
     _new_version="${_epoch}:${_upstream_version}-${_date_version}+git${_git_version}"
 
-    debchange -v "$_new_version" "Latest upstream git."
+    debchange --distribution unstable --newversion "$_new_version" "Latest upstream git."
 
     git add debian/changelog
     git commit --quiet -m "Bumped debian changelog to $_new_version"
