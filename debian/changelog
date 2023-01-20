@@ -1,3 +1,9 @@
+amarok (2:2.9.999-20230120+git5a8940d63a) unstable; urgency=medium
+
+  * Latest upstream git.
+
+ -- Gitlab CI Salsa Pipeline <gitlab-ci@jakobmeng.de>  Fri, 20 Jan 2023 00:09:00 +0000
+
 amarok (2:2.9.999-20230118+gitc66adae13e) unstable; urgency=medium
 
   * Latest upstream git.
