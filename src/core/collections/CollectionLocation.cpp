@@ -681,8 +681,9 @@ CollectionLocation::removeSourceTracks( const Meta::TrackList &tracks )
         debug() << "transfer error for track" << track->playableUrl();
     }
 
-    QSet<Meta::TrackPtr> toRemove = QSet<Meta::TrackPtr>::fromList( tracks );
-    QSet<Meta::TrackPtr> errored = QSet<Meta::TrackPtr>::fromList( m_tracksWithError.keys() );
+    QSet<Meta::TrackPtr> toRemove(tracks.begin(), tracks.end());
+    QList<Meta::TrackPtr> trackswitherrorkeys=m_tracksWithError.keys();
+    QSet<Meta::TrackPtr> errored(trackswitherrorkeys.begin(), trackswitherrorkeys.end());
     toRemove.subtract( errored );
 
     // start the remove workflow
