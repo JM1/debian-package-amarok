@@ -1,3 +1,9 @@
+amarok (2:2.9.999-20240323+gite73284550d) unstable; urgency=medium
+
+  * Latest upstream git.
+
+ -- Jakob Meng <jakobmeng@web.de>  Sat, 23 Mar 2024 11:53:00 +0000
+
 amarok (2:2.9.999-20240322+gite73284550d) unstable; urgency=medium
 
   * Latest upstream git.
