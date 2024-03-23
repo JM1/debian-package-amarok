@@ -58,7 +58,7 @@ bump-amarok-version:
   rules:
     - if: ($CI_PIPELINE_SOURCE != "schedule")
       when: never
-    - if: $CI_COMMIT_BRANCH == "debian/sid" || $CI_COMMIT_BRANCH == "debian/bullseye"
+    - if: $CI_COMMIT_BRANCH == "debian/sid"
 
   script:
     - |
